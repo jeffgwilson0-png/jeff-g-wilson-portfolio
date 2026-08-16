@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jeff G. Wilson - Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap');
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#8a90a7",
+                        "surface-container-low": "#0d1c2d",
+                        "on-error-container": "#ffdad6",
+                        "inverse-primary": "#005ac2",
+                        "on-primary-container": "#00285d",
+                        "on-error": "#690005",
+                        "surface-tint": "#adc6ff",
+                        "surface-variant": "#273647",
+                        "secondary": "#d0bcff",
+                        "surface-container-high": "#1c2b3c",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "tertiary": "#c0c6de",
+                        "tertiary-fixed-dim": "#c0c6de",
+                        "outline": "#8c909f",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "on-tertiary": "#2a3043",
+                        "background": "#051424",
+                        "on-surface": "#d4e4fa",
+                        "primary-fixed": "#d8e2ff",
+                        "tertiary-fixed": "#dce1fb",
+                        "secondary-container": "#571bc1",
+                        "inverse-surface": "#d4e4fa",
+                        "on-tertiary-fixed": "#151b2d",
+                        "surface": "#051424",
+                        "on-tertiary-container": "#23293c",
+                        "inverse-on-surface": "#233143",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-lowest": "#010f1f",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-secondary": "#3c0091",
+                        "on-secondary-container": "#c4abff",
+                        "on-background": "#d4e4fa",
+                        "primary-container": "#4d8eff",
+                        "outline-variant": "#424754",
+                        "secondary-fixed": "#e9ddff",
+                        "surface-container-highest": "#273647",
+                        "error-container": "#93000a",
+                        "surface-container": "#122131",
+                        "on-secondary-fixed": "#23005c",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#051424",
+                        "primary": "#adc6ff",
+                        "on-tertiary-fixed-variant": "#40465a",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-bright": "#2c3a4c",
+                        "on-primary": "#002e6a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "section-gap": "120px",
+                        "container-max": "1200px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "display-lg-mobile": ["Geist"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-lg-mobile": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        /* Glass Layers */
+        .glass-base {
+            background-color: #020617;
+        }
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-nav {
+            background-color: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.3); /* Glint */
+        }
+        
+        /* Glows */
+        .glow-blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.15;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .timeline-line {
+            width: 2px;
+            background-color: #424754; /* outline-variant */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container relative">
+<div class="noise-bg"></div>
+<!-- Ambient Background Glows -->
+<div class="glow-blob bg-primary w-[500px] h-[500px] top-[-100px] right-[-100px]"></div>
+<div class="glow-blob bg-secondary w-[400px] h-[400px] bottom-[20%] left-[-50px]"></div>
+<!-- TopNavBar -->
+<nav class="hidden md:flex flex-col fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-container-max rounded-full border border-white/10 bg-white/5 dark:bg-white/5 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-50">
+<div class="flex justify-between items-center px-8 py-3">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface text-primary dark:text-primary">
+                JEFF G. WILSON
+            </div>
+<div class="flex items-center space-x-6">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md hover:bg-white/10 transition-all duration-300 active:scale-95 transition-transform px-2" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md hover:bg-white/10 transition-all duration-300 active:scale-95 transition-transform px-2" href="#about">About</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md hover:bg-white/10 transition-all duration-300 active:scale-95 transition-transform px-2" href="#projects">Projects</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md hover:bg-white/10 transition-all duration-300 active:scale-95 transition-transform px-2" href="#research">Research</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md hover:bg-white/10 transition-all duration-300 active:scale-95 transition-transform px-2" href="#experience">Experience</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md hover:bg-white/10 transition-all duration-300 active:scale-95 transition-transform px-2" href="#work">Work With Me</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="bg-primary text-on-primary font-label-mono text-label-mono px-4 py-2 rounded-full hover:bg-primary/90 transition-colors">Download CV</button>
+<button class="glass-card font-label-mono text-label-mono px-4 py-2 rounded-full hover:bg-white/10 transition-colors">Contact</button>
+</div>
+</div>
+</nav>
+<!-- Mobile Nav (simplified) -->
+<nav class="md:hidden glass-nav fixed top-0 w-full z-50 flex justify-between items-center p-4">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-primary">JGW</div>
+<button class="text-on-surface"><span class="material-symbols-outlined">menu</span></button>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter pt-[150px]">
+<!-- Hero Section -->
+<section class="min-h-[80vh] flex flex-col md:flex-row items-center justify-center gap-section-gap relative mb-section-gap">
+<div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left z-10">
+<span class="font-label-mono text-label-mono text-primary mb-4 tracking-widest uppercase">Computer Engineer | Data Scientist | AI / ML Researcher</span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-on-surface mb-6">JEFF G. WILSON</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl">
+                    I build intelligent software, data-driven systems, and research-driven AI solutions. Exploring the intersection of high-performance computing and machine learning.
+                </p>
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+<button class="bg-primary text-on-primary font-label-mono text-label-mono px-8 py-3 rounded-full hover:bg-primary/90 transition-all duration-300 shadow-[0_0_20px_rgba(173,198,255,0.3)]">Explore My Work</button>
+<button class="glass-card font-label-mono text-label-mono px-8 py-3 rounded-full hover:border-primary/50 transition-all duration-300">Download CV</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono px-4 py-3 flex items-center gap-2">
+                        Work With Me <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="flex-1 w-full max-w-[500px] relative z-10">
+<div class="glass-card rounded-[2rem] p-4 relative aspect-[4/5] overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-50"></div>
+<img class="w-full h-full object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-700 mix-blend-luminosity opacity-80 group-hover:opacity-100" data-alt="A highly professional and cinematic portrait of a young male computer engineer and AI researcher. The subject is well-lit with soft, high-end studio lighting, conveying a sense of deep intellect and premium technical expertise. The background is a subtle, out-of-focus deep navy and cool gray environment with abstract glints of light reminiscent of liquid glass and modern data centers. The overall aesthetic is clean, modern, and perfectly matches a high-end, dark-mode 'Liquid Glass' UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrbRk8hofWPEEr0HyD4XJ5Zar720yIVJzzBLfDBqeRLeanrM8MbvdHGVjanlXlmRl-qjClOfZa1Z1M0tyqi_Mz5JApjVTSd2sVXusAZgXImdn1RqqFfM8MDa0U4FYuTHP6JFWlHIhDvrlowZDSpIs_YfnNfkhqJJV7kcNFijH3cDOQcEr4UXCL825DYJj8EHwNdd6Yjp0fgLzXaZtOJcy7jEqqFD6ojGNnkBGkLc_c2nSdgX3G_nE6"/>
+<div class="absolute bottom-6 left-6 right-6 glass-card p-4 rounded-xl flex items-center gap-4 backdrop-blur-xl border border-white/20">
+<span class="material-symbols-outlined text-primary text-3xl">psychology</span>
+<div>
+<div class="font-label-mono text-label-mono text-on-surface">Currently exploring</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Advanced RAG Architectures</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="mb-section-gap" id="about">
+<div class="glass-card rounded-3xl p-8 md:p-12 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-[60px] pointer-events-none"></div>
+<h2 class="font-headline-lg text-headline-lg mb-8 inline-block border-b border-white/10 pb-4">About Me</h2>
+<div class="grid md:grid-cols-2 gap-12">
+<div>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">
+                            I am a recent Computer Engineering graduate and currently pursuing my M.Tech in Data Science at Marwadi University. My academic and professional journey is driven by a deep fascination with how complex data can be transformed into actionable intelligence.
+                        </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                            Beyond academia, I am deeply involved in practical software development and AI research, aiming to bridge the gap between theoretical algorithms and scalable, real-world applications.
+                        </p>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">school</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-lg">M.Tech Data Science</h4>
+<p class="text-on-surface-variant">Marwadi University (Current)</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">computer</span>
+<div>
+<h4 class="font-headline-md text-headline-md text-lg">B.E. Computer Engineering</h4>
+<p class="text-on-surface-variant">Graduated</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full py-stack-lg mt-section-gap border-t border-white/5">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter flex flex-col md:flex-row justify-between items-center gap-stack-md">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface text-primary dark:text-primary">
+                © 2024 Jeff G. Wilson. Built with Liquid Glass.
+            </div>
+<div class="flex flex-wrap justify-center md:justify-end gap-6 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">GitHub</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Instagram</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Email</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100 transition-opacity" href="#">Download CV</a>
+</div>
+</div>
+</footer>
+</body></html>

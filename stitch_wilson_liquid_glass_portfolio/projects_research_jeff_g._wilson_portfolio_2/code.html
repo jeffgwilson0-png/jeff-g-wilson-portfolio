@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Research &amp; Projects | Jeff G. Wilson</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#c2c6d6",
+                        "outline": "#8c909f",
+                        "surface": "#051424",
+                        "on-secondary-fixed": "#23005c",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "surface-dim": "#051424",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#004395",
+                        "outline-variant": "#424754",
+                        "secondary-fixed": "#e9ddff",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "surface-container-lowest": "#010f1f",
+                        "tertiary": "#89ceff",
+                        "on-tertiary": "#00344d",
+                        "on-primary-fixed": "#001a42",
+                        "primary-container": "#4d8eff",
+                        "surface-tint": "#adc6ff",
+                        "on-primary-container": "#00285d",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#002d43",
+                        "on-surface": "#d5e4fa",
+                        "primary": "#adc6ff",
+                        "background": "#051424",
+                        "on-tertiary-fixed": "#001e2f",
+                        "surface-variant": "#283647",
+                        "secondary-container": "#571bc1",
+                        "inverse-on-surface": "#233143",
+                        "on-error": "#690005",
+                        "surface-container-low": "#0e1c2d",
+                        "surface-container": "#122031",
+                        "on-secondary-container": "#c4abff",
+                        "on-background": "#d5e4fa",
+                        "inverse-surface": "#d5e4fa",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#1d2b3c",
+                        "surface-bright": "#2c3a4c",
+                        "tertiary-fixed": "#c9e6ff",
+                        "on-primary": "#002e6a",
+                        "surface-container-highest": "#283647",
+                        "tertiary-container": "#009ada",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#3c0091",
+                        "inverse-primary": "#005ac2",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary": "#d0bcff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-xl": "64px",
+                        "stack-xs": "4px",
+                        "container-max": "1440px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "20px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Geist", "sans-serif"],
+                        "body-lg": ["Geist", "sans-serif"],
+                        "headline-md": ["Geist", "sans-serif"],
+                        "body-md": ["Geist", "sans-serif"],
+                        "code-sm": ["JetBrains Mono", "monospace"],
+                        "display-xl-mobile": ["Geist", "sans-serif"],
+                        "headline-lg": ["Geist", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "code-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-xl-mobile": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Ambient Liquid Glass Glows -->
+<div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/10 blur-[120px] pointer-events-none mix-blend-screen opacity-50 z-0"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-tertiary/10 blur-[150px] pointer-events-none mix-blend-screen opacity-40 z-0"></div>
+<!-- Shared Component: TopNavBar -->
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-container-max rounded-full border border-white/10 backdrop-blur-32 bg-white/3 shadow-xl z-50">
+<div class="flex justify-between items-center px-8 py-3 w-full relative">
+<!-- Inner highlight for glass depth -->
+<div class="absolute inset-0 rounded-full shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] pointer-events-none"></div>
+<div class="font-headline-md text-headline-md font-bold text-on-surface z-10">
+                Jeff G. Wilson
+            </div>
+<ul class="hidden md:flex space-x-8 items-center z-10">
+<li><a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Home</a></li>
+<li><a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">About</a></li>
+<!-- Active Tab: Projects -->
+<li><a class="text-primary font-bold border-b-2 border-primary pb-1 scale-95 transition-transform block" href="#">Projects</a></li>
+<li><a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Research</a></li>
+<li><a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Experience</a></li>
+<li><a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Contact</a></li>
+</ul>
+<button class="hidden md:flex items-center space-x-2 px-6 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-on-primary transition-all duration-300 z-10 group">
+<span class="font-body-md font-medium">Download CV</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-y-0.5 transition-transform">download</span>
+</button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface z-10">
+<span class="material-symbols-outlined text-[28px]">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[120px] pb-20 px-margin-mobile md:px-gutter max-w-container-max mx-auto w-full z-10 relative">
+<!-- Header Section -->
+<header class="mb-stack-xl mt-stack-lg max-w-3xl">
+<h1 class="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl text-on-surface mb-stack-sm drop-shadow-lg">
+                Exploration &amp; <span class="text-primary">Synthesis</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant opacity-80 leading-relaxed">
+                An index of featured academic research and applied engineering projects, focusing on machine learning, data architecture, and predictive modeling within complex systems.
+            </p>
+</header>
+<!-- Featured Research Section -->
+<section class="mb-[100px]">
+<div class="flex items-center space-x-3 mb-stack-lg">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">science</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Featured Research</h2>
+</div>
+<!-- Glass Bento Card for Research -->
+<div class="group relative rounded-2xl bg-white/3 backdrop-blur-[32px] border border-white/10 overflow-hidden transition-all duration-500 hover:bg-white/5 hover:border-white/20 hover:shadow-2xl hover:shadow-primary/5">
+<!-- Top Edge Highlight -->
+<div class="absolute inset-0 pointer-events-none shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] rounded-2xl z-20"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+<!-- Image Area -->
+<div class="lg:col-span-5 relative min-h-[300px] lg:min-h-full overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700 mix-blend-screen scale-105 group-hover:scale-100 ease-out" data-alt="A highly technical, abstract digital visualization representing data retrieval and trust in AI systems. The scene features glowing interconnected nodes and soft blue holographic data streams floating against a deep navy blue background. The aesthetic is sophisticated and academic, resembling a high-end research paper cover with a liquid glass visual treatment, soft specular highlights, and dark void-like depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa3ahkFCjJXWVwdTPxmbblMQitPylWpi1HqlsMXOvbEF9CeqRKFiPg_eSotHH8hzOr4dNlT8bgEO9Q9FB_vznEzFCu3Lyra8pj3PsZjYLTlAbSZ419mMtffY4RPcFw-DHugERzgZeZwRVscuGU3_y0offwbgYZ8c2qFFDV-ZH8sh4V8DmNCZl7laEfmoMcqmiVWJFQ4y2_y6et3I4giMSiVbcV1Was709ROJVzLUbv8SbfbjiKhY-L"/>
+<div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-surface/90 to-transparent"></div>
+<!-- Status Badge -->
+<div class="absolute top-6 left-6 flex items-center space-x-2 bg-surface-container/80 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5 z-10">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+<span class="font-code-sm text-code-sm text-on-surface-variant tracking-wide uppercase text-xs">Published / Under Review</span>
+</div>
+</div>
+<!-- Content Area -->
+<div class="lg:col-span-7 p-8 md:p-12 flex flex-col justify-center relative z-10">
+<div class="mb-4">
+<span class="font-code-sm text-code-sm text-tertiary opacity-80 mb-2 block">IEEE Gujarat Section • 2024</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2 leading-tight">TrustRAG: Enhancing Reliability in Large Language Models through Graph-Augmented Retrieval</h3>
+</div>
+<div class="flex items-center space-x-2 mb-6">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">person</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Lead Author: Jeff G. Wilson</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-80 mb-8 line-clamp-3 leading-relaxed">
+                            This paper introduces TrustRAG, a novel architectural framework designed to mitigate hallucination in generative AI models by integrating knowledge graphs directly into the retrieval pipeline. By enforcing semantic boundaries, the system achieves higher factual consistency in domain-specific querying scenarios.
+                        </p>
+<div class="mt-auto flex flex-wrap gap-4">
+<a class="inline-flex items-center space-x-2 bg-primary text-on-primary px-6 py-2.5 rounded-full font-body-md font-medium hover:bg-primary-fixed transition-colors" href="#">
+<span>Read Full Paper</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+<a class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 text-on-surface px-6 py-2.5 rounded-full font-body-md font-medium hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+<span>Save Citation</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Grid Section -->
+<section>
+<div class="flex justify-between items-end mb-stack-lg border-b border-white/10 pb-4">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Applied Projects</h2>
+</div>
+<a class="hidden md:flex items-center space-x-1 text-primary hover:text-surface-tint font-body-md transition-colors group" href="#">
+<span>View Repository</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-lg">
+<!-- Project Card 1: E-Commerce -->
+<div class="group flex flex-col bg-[rgba(255,255,255,0.02)] backdrop-blur-[40px] border border-white/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-300 relative h-full">
+<div class="absolute inset-0 pointer-events-none shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] rounded-xl z-20"></div>
+<div class="h-48 relative overflow-hidden border-b border-white/10">
+<img class="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500" data-alt="A sleek, modern interface visualization for an e-commerce platform displayed on a translucent glass panel. The design features minimalist wireframes, glowing primary blue accent buttons, and structured data grids. Set against a deep space background, the aesthetic embodies high-end technical precision, utilizing a dark mode palette with subtle light refraction effects and thin glowing borders." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwhq7O2LAxYvZWfUhfWuw_sglUJA7C69SCbOPVbKgga-PKXyXcWsNRhczChJzZuA1DbGBgk9AideRvOiIBSYacHUzGXG8eMAi7azh4pb4H4GGSidMiePKmUu7Sw-YKBwqhQsuEuDhuYTwFBHu8o_8v64aynkz0LcxwzOGro1R3Ekze0SVmpiGg-0xucdk_tLvqQtidJFj8vXJ74bMU0kIjoUTX8M_w-sFJirmXcTum2GuXFMLJkaFL"/>
+</div>
+<div class="p-6 flex flex-col flex-grow relative z-10">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 text-xl">High-Volume E-Commerce Platform</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-80 mb-6 flex-grow">
+                            A scalable full-stack e-commerce solution architected for high concurrent user loads. Features real-time inventory management, a secure payment gateway integration, and a responsive glassmorphic frontend dashboard.
+                        </p>
+<!-- Tech Tags -->
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="font-code-sm text-code-sm text-primary bg-primary/10 border border-primary/20 px-2 py-1 rounded">React</span>
+<span class="font-code-sm text-code-sm text-tertiary bg-tertiary/10 border border-tertiary/20 px-2 py-1 rounded">Node.js</span>
+<span class="font-code-sm text-code-sm text-secondary-fixed bg-secondary-fixed/10 border border-secondary-fixed/20 px-2 py-1 rounded">PostgreSQL</span>
+</div>
+<!-- Actions -->
+<div class="flex items-center space-x-4 pt-4 border-t border-white/5 mt-auto">
+<a class="flex items-center space-x-2 text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">
+<span class="material-symbols-outlined text-[20px]">code</span>
+<span>GitHub</span>
+</a>
+<a class="flex items-center space-x-2 text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">
+<span class="material-symbols-outlined text-[20px]">open_in_new</span>
+<span>Live Demo</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Project Card 2: House Price -->
+<div class="group flex flex-col bg-[rgba(255,255,255,0.02)] backdrop-blur-[40px] border border-white/10 rounded-xl overflow-hidden hover:border-tertiary/30 transition-all duration-300 relative h-full">
+<div class="absolute inset-0 pointer-events-none shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] rounded-xl z-20"></div>
+<div class="h-48 relative overflow-hidden border-b border-white/10">
+<img class="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500" data-alt="An abstract representation of real estate data analysis featuring glowing blue and violet statistical charts and predictive modeling lines. The data is projected onto a series of layered, frosted glass panes floating in a dark, atmospheric void. The high-fidelity rendering emphasizes technical depth, utilizing a liquid glass aesthetic with sharp 1px borders and soft background blur to convey advanced data science." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnePX11Daz3IxG_THbectkW_XVlB1WvwxR1PbqoKV0wiFJna-j2uRMk6fnHhRz9cs2l_j4ra2Cwd_dqY1wqPBacSuoyeA6ebiwY170IHkPBgpLFo3Y2VFc53drXmUxbply09M0zMmkBULGdSlYqj3SIp_ljXb-zKZutpoShRmEsl3RxXYqE3FgWNqm0wnlt7fv4qFVzEEY37rStOd8-iWehrl_kwaMoriWNgYXd06UrZK-1MR3Bs6z"/>
+</div>
+<div class="p-6 flex flex-col flex-grow relative z-10">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 text-xl">House Price Prediction Model</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-80 mb-6 flex-grow">
+                            An advanced machine learning pipeline utilizing gradient boosting algorithms to predict real estate valuations based on complex multimodal datasets including localized economic indicators and spatial data.
+                        </p>
+<!-- Tech Tags -->
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="font-code-sm text-code-sm text-primary bg-primary/10 border border-primary/20 px-2 py-1 rounded">Python</span>
+<span class="font-code-sm text-code-sm text-tertiary bg-tertiary/10 border border-tertiary/20 px-2 py-1 rounded">Scikit-Learn</span>
+<span class="font-code-sm text-code-sm text-secondary-fixed bg-secondary-fixed/10 border border-secondary-fixed/20 px-2 py-1 rounded">Pandas</span>
+</div>
+<!-- Actions -->
+<div class="flex items-center space-x-4 pt-4 border-t border-white/5 mt-auto">
+<a class="flex items-center space-x-2 text-on-surface-variant hover:text-tertiary transition-colors font-body-md" href="#">
+<span class="material-symbols-outlined text-[20px]">code</span>
+<span>GitHub</span>
+</a>
+<a class="flex items-center space-x-2 text-on-surface-variant hover:text-tertiary transition-colors font-body-md" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span>Jupyter Notebook</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Project Card 3: Scheduling Generator -->
+<div class="group flex flex-col bg-[rgba(255,255,255,0.02)] backdrop-blur-[40px] border border-white/10 rounded-xl overflow-hidden hover:border-secondary-fixed/30 transition-all duration-300 relative h-full">
+<div class="absolute inset-0 pointer-events-none shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] rounded-xl z-20"></div>
+<div class="h-48 relative overflow-hidden border-b border-white/10">
+<img class="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-500" data-alt="A sophisticated visual metaphor for automated scheduling algorithms, depicting complex interlocking geometric shapes and glowing timelines arranging themselves perfectly. The scene is illuminated by soft, cool technical light against a near-black background. The composition uses high-end glassmorphism techniques, showing translucent layers with inner specular highlights, reflecting a premium computer engineering and algorithmic theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWJChNLmBM22HI-ldV3K3fx4UmYM02sL_5HVAAK6dO6Bv9o6ykSUKtg8DcdfZaeSyWTSJvuZMQgNrDRTosXr5L_IByxBQv8Coiq4DEFqgmRnlqyxx5UJ2KrFpOYggsJd6H_DcgGY4ZC4EBUv9YJ7IY4BOAOLf7eb4nXfzceo8Day9fZeK9PS889tcBZ2Ml6GkEKu20kZ7oO4OKq9M1alHbreIFdP_LaP8Wy2Fq3R67zjsLNZcnlX7I"/>
+</div>
+<div class="p-6 flex flex-col flex-grow relative z-10">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 text-xl">Automatic Scheduling Generator</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-80 mb-6 flex-grow">
+                            A constraint satisfaction solver designed for complex institutional timetabling. Utilizes genetic algorithms to optimize resource allocation, minimizing conflicts across thousands of variables.
+                        </p>
+<!-- Tech Tags -->
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="font-code-sm text-code-sm text-primary bg-primary/10 border border-primary/20 px-2 py-1 rounded">C++</span>
+<span class="font-code-sm text-code-sm text-tertiary bg-tertiary/10 border border-tertiary/20 px-2 py-1 rounded">Algorithms</span>
+<span class="font-code-sm text-code-sm text-secondary-fixed bg-secondary-fixed/10 border border-secondary-fixed/20 px-2 py-1 rounded">Optimization</span>
+</div>
+<!-- Actions -->
+<div class="flex items-center space-x-4 pt-4 border-t border-white/5 mt-auto">
+<a class="flex items-center space-x-2 text-on-surface-variant hover:text-secondary-fixed transition-colors font-body-md" href="#">
+<span class="material-symbols-outlined text-[20px]">code</span>
+<span>GitHub</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="w-full border-t border-white/10 mt-stack-xl backdrop-blur-32 bg-surface-container-lowest z-10 relative">
+<div class="flex flex-col md:flex-row justify-between items-center px-20 py-stack-lg max-w-container-max mx-auto">
+<div class="font-body-md text-body-md text-on-surface-variant mb-4 md:mb-0">
+                © 2024 Jeff G. Wilson. All rights reserved.
+            </div>
+<ul class="flex space-x-6">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">GitHub</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">LinkedIn</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Instagram</a></li>
+</ul>
+</div>
+</footer>
+</body></html>

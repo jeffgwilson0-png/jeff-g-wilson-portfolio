@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jeff G. Wilson - Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#c2c6d6",
+                        "outline": "#8c909f",
+                        "surface": "#051424",
+                        "on-secondary-fixed": "#23005c",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "surface-dim": "#051424",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#004395",
+                        "outline-variant": "#424754",
+                        "secondary-fixed": "#e9ddff",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "surface-container-lowest": "#010f1f",
+                        "tertiary": "#89ceff",
+                        "on-tertiary": "#00344d",
+                        "on-primary-fixed": "#001a42",
+                        "primary-container": "#4d8eff",
+                        "surface-tint": "#adc6ff",
+                        "on-primary-container": "#00285d",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#002d43",
+                        "on-surface": "#d5e4fa",
+                        "primary": "#adc6ff",
+                        "background": "#051424",
+                        "on-tertiary-fixed": "#001e2f",
+                        "surface-variant": "#283647",
+                        "secondary-container": "#571bc1",
+                        "inverse-on-surface": "#233143",
+                        "on-error": "#690005",
+                        "surface-container-low": "#0e1c2d",
+                        "surface-container": "#122031",
+                        "on-secondary-container": "#c4abff",
+                        "on-background": "#d5e4fa",
+                        "inverse-surface": "#d5e4fa",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#1d2b3c",
+                        "surface-bright": "#2c3a4c",
+                        "tertiary-fixed": "#c9e6ff",
+                        "on-primary": "#002e6a",
+                        "surface-container-highest": "#283647",
+                        "tertiary-container": "#009ada",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#3c0091",
+                        "inverse-primary": "#005ac2",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary": "#d0bcff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-xl": "64px",
+                        "stack-xs": "4px",
+                        "container-max": "1440px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "20px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Geist"],
+                        "code-sm": ["JetBrains Mono"],
+                        "display-xl-mobile": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "code-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-xl-mobile": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(77, 142, 255, 0.15) 0%, rgba(5, 20, 36, 0) 70%);
+        }
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden relative min-h-screen">
+<!-- Ambient Background Effects -->
+<div class="fixed inset-0 z-0 pointer-events-none bg-grid-pattern"></div>
+<div class="fixed inset-0 z-0 pointer-events-none glow-bg animate-pulse mix-blend-screen opacity-50"></div>
+<div class="fixed -top-1/4 -right-1/4 w-[150vw] h-[150vh] z-0 pointer-events-none" style="background: radial-gradient(circle at center, rgba(87, 27, 193, 0.1) 0%, transparent 60%);"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-container-max rounded-full border border-white/10 backdrop-blur-32 bg-white/3 shadow-xl z-50 transition-all duration-300 hidden md:flex justify-between items-center px-8 py-3">
+<div class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight">Jeff G. Wilson</div>
+<div class="flex space-x-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md transition-transform scale-95" href="#">Home</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Projects</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Research</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Experience</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold hover:bg-primary hover:text-on-primary transition-colors glass-pill flex items-center space-x-2">
+<span>Download CV</span>
+<span class="material-symbols-outlined text-sm">download</span>
+</button>
+</nav>
+<!-- Main Content -->
+<main class="relative z-10 pt-32 md:pt-48 pb-20 px-4 md:px-margin-mobile mx-auto max-w-container-max flex flex-col space-y-stack-xl">
+<!-- Hero Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center min-h-[70vh]">
+<div class="col-span-1 md:col-span-7 flex flex-col space-y-stack-md relative z-10">
+<h2 class="font-code-sm text-code-sm text-tertiary uppercase tracking-widest opacity-80">System Architecture &amp; AI</h2>
+<h1 class="font-display-xl-mobile md:font-display-xl text-display-xl-mobile md:text-display-xl text-on-surface leading-tight bg-clip-text text-transparent bg-gradient-to-r from-on-surface via-primary to-secondary">
+                    JEFF G. WILSON
+                </h1>
+<p class="font-headline-md text-headline-md text-on-surface-variant font-medium mt-4">
+                    Computer Engineer <span class="text-outline/50 px-2">|</span> Data Scientist <span class="text-outline/50 px-2">|</span> AI/ML Researcher
+                </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant/80 max-w-2xl mt-6 leading-relaxed">
+                    I build intelligent software, data-driven systems, and research-driven AI solutions designed to bridge complex theoretical models with robust, scalable engineering.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 mt-8 pt-4">
+<button class="bg-primary/20 text-primary border border-primary/50 px-8 py-4 rounded-lg font-bold hover:bg-primary hover:text-on-primary transition-all duration-300 flex items-center justify-center space-x-2 shadow-[0_0_15px_rgba(173,198,255,0.2)]">
+<span>Explore My Work</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="glass-card text-on-surface px-8 py-4 rounded-lg font-medium hover:bg-white/10 transition-colors flex items-center justify-center space-x-2">
+<span>Work With Me</span>
+<span class="material-symbols-outlined">mail</span>
+</button>
+</div>
+</div>
+<!-- Profile Visualization -->
+<div class="col-span-1 md:col-span-5 relative flex justify-center items-center mt-12 md:mt-0">
+<div class="relative w-64 h-64 md:w-96 md:h-96">
+<!-- Outer Decorative Rings -->
+<div class="absolute inset-0 rounded-full border border-white/5 animate-[spin_20s_linear_infinite]"></div>
+<div class="absolute inset-4 rounded-full border border-primary/20 border-dashed animate-[spin_30s_linear_infinite_reverse]"></div>
+<!-- Glass Container -->
+<div class="absolute inset-8 rounded-full glass-card overflow-hidden shadow-[0_0_40px_rgba(77,142,255,0.15)] flex items-center justify-center relative group">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-surface/80 z-10"></div>
+<img class="w-full h-full object-cover relative z-0 transition-transform duration-700 group-hover:scale-105" data-alt="A highly detailed, professional portrait of a male computer engineer and data scientist. He is wearing modern, smart-casual attire. The lighting is cinematic, featuring soft cool blue and violet ambient tones typical of a high-tech liquid glass aesthetic. The background is a subtle, out-of-focus server room or abstract data visualization, emphasizing deep blacks and pristine whites with a luminous, premium depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpBERXKUTtRGhGx2sx2tqZYoy5-8t87Kx7z7JbbXAM626QUn_wOj0DhMCzdSzarRv0X8KpZ2Y2jX5Q2A30i1uknQ1dSN88Y-nf9lNHBluZ71S9FaTDvvv7FgiKVXkPYhueoojMuVFh3JXg2Z1tW-h9pU9m5IkAPDBse_9Up7jjWFc6Q9Ncc7mCOxyTRwihuTzDAvWfJhpNuP5RxTVZYj7Hm0WDuReB28Xc1oatPeN0mWr2n63Ncqg6"/>
+<div class="absolute bottom-6 left-0 w-full text-center z-20 font-code-sm text-code-sm text-primary opacity-80">STATUS: ONLINE</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Expertise Pills -->
+<section class="flex flex-wrap gap-4 justify-center md:justify-start pt-12 pb-24 border-t border-white/5">
+<div class="glass-pill px-6 py-3 rounded-full flex items-center space-x-2 hover:border-primary/50 transition-colors cursor-default">
+<span class="material-symbols-outlined text-primary text-sm">memory</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Machine Learning</span>
+</div>
+<div class="glass-pill px-6 py-3 rounded-full flex items-center space-x-2 hover:border-secondary-container/50 transition-colors cursor-default">
+<span class="material-symbols-outlined text-secondary text-sm">cloud</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Cloud Architecture</span>
+</div>
+<div class="glass-pill px-6 py-3 rounded-full flex items-center space-x-2 hover:border-tertiary/50 transition-colors cursor-default">
+<span class="material-symbols-outlined text-tertiary text-sm">database</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Data Engineering</span>
+</div>
+<div class="glass-pill px-6 py-3 rounded-full flex items-center space-x-2 hover:border-primary/50 transition-colors cursor-default">
+<span class="material-symbols-outlined text-primary text-sm">code_blocks</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">System Design</span>
+</div>
+<div class="glass-pill px-6 py-3 rounded-full flex items-center space-x-2 hover:border-secondary/50 transition-colors cursor-default">
+<span class="material-symbols-outlined text-secondary text-sm">psychology</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">AI Research</span>
+</div>
+</section>
+<!-- Featured Work Bento Grid -->
+<section class="flex flex-col space-y-stack-lg">
+<div class="flex items-center space-x-4 mb-4">
+<span class="material-symbols-outlined text-primary text-2xl">folder_special</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Featured Projects</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-[300px]">
+<!-- TrustRAG -->
+<div class="glass-card col-span-1 md:col-span-8 rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div class="absolute right-0 top-0 w-1/2 h-full opacity-20 pointer-events-none">
+<img class="w-full h-full object-cover" data-alt="Abstract, high-fidelity data visualization representing Retrieval-Augmented Generation (RAG) and machine learning models. A network of glowing nodes and geometric glass layers floating in a dark, navy void. Subtle primary blue and violet highlights simulate light refraction through deep glass textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAapHxIPjjrkITju8sCdGQ8hg6k4yJXruq9JjWsI7ELiT5pwreNKqWEnf8-cMUFCqz3jKykDt1bdstSpLYF4uXfP2-9EiqxWs4Z6Xs4ZQiv06Riprsk0LHVzim2W0NseEcWaSA7ktAIUGx76UO7akYY64ExUDlLuNFo4NcCgfaDtDPUMyo2BAUJtIgRlVBL6zcRjd9jimDu1CymsfFmiy1ERBd-KLZF9blB1S1XP646vbx8tf2hx-Bz"/>
+</div>
+<div class="relative z-10 flex flex-col items-start space-y-4">
+<span class="glass-pill px-3 py-1 rounded text-xs font-code-sm text-primary border-primary/30">AI Research</span>
+<h4 class="font-headline-md text-headline-md text-on-surface font-bold">TrustRAG Architecture</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+                            A novel approach to increasing factual reliability in Large Language Models using robust retrieval-augmented generation pipelines and confidence scoring.
+                        </p>
+</div>
+<div class="relative z-10 mt-auto flex items-center space-x-2 text-primary group-hover:translate-x-2 transition-transform cursor-pointer w-fit">
+<span class="font-bold">Read Paper</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Liberia Opportunities Hub -->
+<div class="glass-card col-span-1 md:col-span-4 rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-tr from-secondary-container/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-start space-y-4">
+<span class="glass-pill px-3 py-1 rounded text-xs font-code-sm text-secondary border-secondary/30">Web Application</span>
+<h4 class="font-headline-md text-headline-md text-on-surface font-bold leading-tight">Liberia<br/>Opportunities Hub</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">
+                            A scalable, cloud-native platform connecting local talent with emerging technical opportunities. Built on microservices.
+                        </p>
+</div>
+<div class="relative z-10 mt-auto flex items-center space-x-2 text-secondary group-hover:translate-x-2 transition-transform cursor-pointer w-fit">
+<span class="font-bold">View Case Study</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- NGO Connect -->
+<div class="glass-card col-span-1 md:col-span-12 rounded-xl p-8 flex flex-col md:flex-row items-center justify-between relative overflow-hidden group h-[200px] md:h-auto">
+<div class="absolute left-0 bottom-0 w-full h-1/2 opacity-10 pointer-events-none mix-blend-screen" style="background: linear-gradient(to top, rgba(137, 206, 255, 0.2), transparent);"></div>
+<div class="relative z-10 flex flex-col items-start space-y-2 md:max-w-xl">
+<span class="glass-pill px-3 py-1 rounded text-xs font-code-sm text-tertiary border-tertiary/30">Data Platform</span>
+<h4 class="font-headline-md text-headline-md text-on-surface font-bold">NGO Connect</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            A centralized data hub and API service designed to streamline logistics and resource allocation for non-governmental organizations operating in complex environments.
+                        </p>
+</div>
+<div class="relative z-10 mt-4 md:mt-0 flex items-center justify-center bg-white/5 border border-white/10 rounded-full h-16 w-16 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-on-surface group-hover:text-primary">open_in_new</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-white/10 mt-stack-xl backdrop-blur-32 bg-white/3 bg-surface-container-lowest relative z-50">
+<div class="flex flex-col md:flex-row justify-between items-center px-20 py-stack-lg max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-on-surface mb-4 md:mb-0 text-center md:text-left">
+                © 2024 Jeff G. Wilson. All rights reserved.
+            </div>
+<div class="flex space-x-6">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">GitHub</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+</body></html>

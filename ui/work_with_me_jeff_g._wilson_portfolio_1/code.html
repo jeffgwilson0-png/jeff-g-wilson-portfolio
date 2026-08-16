@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Work With Me - Jeff G. Wilson</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#8a90a7",
+                      "surface-container-low": "#0d1c2d",
+                      "on-error-container": "#ffdad6",
+                      "inverse-primary": "#005ac2",
+                      "on-primary-container": "#00285d",
+                      "on-error": "#690005",
+                      "surface-tint": "#adc6ff",
+                      "surface-variant": "#273647",
+                      "secondary": "#d0bcff",
+                      "surface-container-high": "#1c2b3c",
+                      "secondary-fixed-dim": "#d0bcff",
+                      "tertiary": "#c0c6de",
+                      "tertiary-fixed-dim": "#c0c6de",
+                      "outline": "#8c909f",
+                      "on-secondary-fixed-variant": "#5516be",
+                      "on-tertiary": "#2a3043",
+                      "background": "#051424",
+                      "on-surface": "#d4e4fa",
+                      "primary-fixed": "#d8e2ff",
+                      "tertiary-fixed": "#dce1fb",
+                      "secondary-container": "#571bc1",
+                      "inverse-surface": "#d4e4fa",
+                      "on-tertiary-fixed": "#151b2d",
+                      "surface": "#051424",
+                      "on-tertiary-container": "#23293c",
+                      "inverse-on-surface": "#233143",
+                      "on-primary-fixed-variant": "#004395",
+                      "on-primary-fixed": "#001a42",
+                      "surface-container-lowest": "#010f1f",
+                      "on-surface-variant": "#c2c6d6",
+                      "on-secondary": "#3c0091",
+                      "on-secondary-container": "#c4abff",
+                      "on-background": "#d4e4fa",
+                      "primary-container": "#4d8eff",
+                      "outline-variant": "#424754",
+                      "secondary-fixed": "#e9ddff",
+                      "surface-container-highest": "#273647",
+                      "error-container": "#93000a",
+                      "surface-container": "#122131",
+                      "on-secondary-fixed": "#23005c",
+                      "error": "#ffb4ab",
+                      "surface-dim": "#051424",
+                      "primary": "#adc6ff",
+                      "on-tertiary-fixed-variant": "#40465a",
+                      "primary-fixed-dim": "#adc6ff",
+                      "surface-bright": "#2c3a4c",
+                      "on-primary": "#002e6a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "gutter": "24px",
+                      "margin-mobile": "20px",
+                      "section-gap": "120px",
+                      "container-max": "1200px",
+                      "stack-lg": "32px",
+                      "stack-md": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Geist"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "display-lg": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "display-lg-mobile": [
+                              "Geist"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "72px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "label-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #020617; /* Base Level 0 */
+            color: #d4e4fa;
+        }
+
+        /* Ambient glows */
+        .ambient-glow-1 {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(173,198,255,0.05) 0%, rgba(2,6,23,0) 70%);
+            border-radius: 50%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(87,27,193,0.05) 0%, rgba(2,6,23,0) 70%);
+            border-radius: 50%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Noise overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Liquid Glass Card Hover */
+        .glass-card-hover {
+            transition: all 0.4s ease;
+        }
+        .glass-card-hover:hover {
+            background: rgba(173,198,255,0.05); /* Shift toward primary tint */
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Ghost Input */
+        .ghost-input {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #d4e4fa;
+            transition: all 0.3s ease;
+        }
+        .ghost-input:focus {
+            outline: none;
+            border-color: rgba(173,198,255,0.5); /* Primary Blue */
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 0 0 1px rgba(173,198,255,0.2);
+        }
+        .ghost-input::placeholder {
+            color: rgba(194,198,214,0.5); /* on-surface-variant */
+        }
+        
+        /* Tab functionality hidden inputs */
+        input[type="radio"].tab-toggle {
+            display: none;
+        }
+        
+        /* Tab Content Visibility */
+        .tab-content { display: none; }
+        #tab-research:checked ~ .content-container #content-research,
+        #tab-web:checked ~ .content-container #content-web,
+        #tab-mobile:checked ~ .content-container #content-mobile {
+            display: block;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tab Label Styling (Active State handled via JS for simplicity, though could be pure CSS) */
+        .tab-label {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+    </style>
+</head>
+<body class="font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- Ambient Backgrounds -->
+<div class="ambient-glow-1"></div>
+<div class="ambient-glow-2"></div>
+<div class="noise-overlay"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-container-max rounded-full backdrop-blur-3xl border border-white/10 bg-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex justify-between items-center px-8 py-3 z-50 transition-transform active:scale-95">
+<a class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface" href="#">JEFF G. WILSON</a>
+<div class="hidden md:flex items-center gap-6">
+<!-- Navigation Links -->
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Home</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">About</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Projects</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Research</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Experience</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="#">Work With Me</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden md:inline-flex px-4 py-2 rounded-full font-label-mono text-label-mono text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-colors" href="#">Download CV</a>
+<a class="inline-flex px-4 py-2 rounded-full font-label-mono text-label-mono text-on-primary bg-primary hover:bg-primary-fixed-dim transition-colors" href="#">Contact</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-[160px] pb-section-gap px-margin-mobile md:px-gutter max-w-container-max w-full mx-auto flex flex-col items-center">
+<!-- Header Section -->
+<header class="text-center mb-stack-lg w-full max-w-3xl">
+<h1 class="font-display-lg-mobile md:font-display-lg text-on-surface mb-stack-md">HAVE AN IDEA?<br/><span class="text-primary">LET'S BUILD IT.</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Whether you're looking to collaborate on research, build a web platform, or develop a mobile app, let's discuss your idea.</p>
+</header>
+<!-- Interactive Inquiry Forms Wrapper -->
+<div class="w-full max-w-4xl relative z-10">
+<!-- Pure CSS Tabs implementation for the forms -->
+<input checked="" class="tab-toggle" id="tab-research" name="form_tabs" type="radio"/>
+<input class="tab-toggle" id="tab-web" name="form_tabs" type="radio"/>
+<input class="tab-toggle" id="tab-mobile" name="form_tabs" type="radio"/>
+<!-- Tab Navigation (Level 2 Glass) -->
+<div class="flex flex-col sm:flex-row justify-center gap-4 mb-stack-lg bg-white/5 backdrop-blur-2xl border border-white/20 p-2 rounded-2xl w-fit mx-auto shadow-lg">
+<label class="tab-label px-6 py-3 rounded-xl font-label-mono text-label-mono text-center flex items-center gap-2 cursor-pointer transition-all bg-primary/10 text-primary" for="tab-research" id="label-research">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">science</span>
+                    Research
+                </label>
+<label class="tab-label px-6 py-3 rounded-xl font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface text-center flex items-center gap-2 cursor-pointer transition-all" for="tab-web" id="label-web">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">language</span>
+                    Web Platform
+                </label>
+<label class="tab-label px-6 py-3 rounded-xl font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface text-center flex items-center gap-2 cursor-pointer transition-all" for="tab-mobile" id="label-mobile">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">smartphone</span>
+                    Mobile App
+                </label>
+</div>
+<!-- Forms Container (Level 1 Glass) -->
+<div class="content-container bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-margin-mobile md:p-stack-lg shadow-sm w-full relative overflow-hidden">
+<!-- Abstract form bg element -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Research Form -->
+<div class="tab-content relative z-10" id="content-research">
+<div class="mb-stack-md flex items-center gap-3 border-b border-white/5 pb-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">science</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Research Inquiry</h2>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Name</label>
+<input class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md" placeholder="Dr. Jane Doe" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Email</label>
+<input class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md" placeholder="jane@university.edu" type="email"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Institution / Organization</label>
+<input class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md" placeholder="e.g. MIT, OpenAI" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Primary Research Area</label>
+<select class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md appearance-none">
+<option class="bg-surface" disabled="" selected="" value="">Select Area</option>
+<option class="bg-surface" value="ai">Artificial Intelligence</option>
+<option class="bg-surface" value="ml">Machine Learning</option>
+<option class="bg-surface" value="hci">Human-Computer Interaction</option>
+<option class="bg-surface" value="other">Other</option>
+</select>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Abstract / Description</label>
+<textarea class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md resize-none" placeholder="Briefly describe the research proposal or hypothesis..." rows="4"></textarea>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Expected Timeline</label>
+<input class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md" placeholder="e.g. 6 months, starting Fall 2024" type="text"/>
+</div>
+<div class="md:col-span-2 mt-4 flex justify-end">
+<button class="px-8 py-4 rounded-full font-label-mono text-label-mono text-on-primary bg-primary hover:bg-primary-fixed-dim transition-colors shadow-[0_10px_30px_rgba(173,198,255,0.2)]" type="button">Submit Proposal</button>
+</div>
+</form>
+</div>
+<!-- Web Project Form -->
+<div class="tab-content relative z-10" id="content-web">
+<div class="mb-stack-md flex items-center gap-3 border-b border-white/5 pb-4">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">language</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Web Platform Inquiry</h2>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Name</label>
+<input class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md" placeholder="Your Name" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Email</label>
+<input class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md" placeholder="hello@company.com" type="email"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Project Type</label>
+<select class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md appearance-none">
+<option class="bg-surface" disabled="" selected="" value="">Select Type</option>
+<option class="bg-surface" value="saas">SaaS Application</option>
+<option class="bg-surface" value="ecommerce">E-Commerce</option>
+<option class="bg-surface" value="portfolio">Portfolio / Marketing</option>
+<option class="bg-surface" value="dashboard">Internal Dashboard</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Estimated Budget (USD)</label>
+<select class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md appearance-none">
+<option class="bg-surface" disabled="" selected="" value="">Select Range</option>
+<option class="bg-surface" value="5-10">$5k - $10k</option>
+<option class="bg-surface" value="10-25">$10k - $25k</option>
+<option class="bg-surface" value="25-50">$25k - $50k</option>
+<option class="bg-surface" value="50+">$50k+</option>
+</select>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Project Description</label>
+<textarea class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md resize-none" placeholder="Tell me about the core features, target audience, and main goals..." rows="5"></textarea>
+</div>
+<div class="md:col-span-2 mt-4 flex justify-end">
+<button class="px-8 py-4 rounded-full font-label-mono text-label-mono text-on-primary bg-primary hover:bg-primary-fixed-dim transition-colors shadow-[0_10px_30px_rgba(173,198,255,0.2)]" type="button">Request Quote</button>
+</div>
+</form>
+</div>
+<!-- Mobile App Form -->
+<div class="tab-content relative z-10" id="content-mobile">
+<div class="mb-stack-md flex items-center gap-3 border-b border-white/5 pb-4">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">smartphone</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Mobile App Inquiry</h2>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Name</label>
+<input class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md" placeholder="Your Name" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Email</label>
+<input class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md" placeholder="hello@company.com" type="email"/>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Target Platform</label>
+<div class="flex gap-4">
+<label class="flex-1 flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
+<input class="rounded border-white/20 bg-transparent text-primary focus:ring-primary/50" type="checkbox"/>
+<span class="font-body-md">iOS (Apple)</span>
+</label>
+<label class="flex-1 flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
+<input class="rounded border-white/20 bg-transparent text-primary focus:ring-primary/50" type="checkbox"/>
+<span class="font-body-md">Android</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">Estimated Budget (USD)</label>
+<select class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md appearance-none">
+<option class="bg-surface" disabled="" selected="" value="">Select Range</option>
+<option class="bg-surface" value="10-20">$10k - $20k</option>
+<option class="bg-surface" value="20-50">$20k - $50k</option>
+<option class="bg-surface" value="50-100">$50k - $100k</option>
+<option class="bg-surface" value="100+">$100k+</option>
+</select>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant">App Description</label>
+<textarea class="ghost-input rounded-lg px-4 py-3 w-full font-body-md text-body-md resize-none" placeholder="Describe the app's functionality, backend needs, and integration requirements..." rows="4"></textarea>
+</div>
+<div class="md:col-span-2 mt-4 flex justify-end">
+<button class="px-8 py-4 rounded-full font-label-mono text-label-mono text-on-primary bg-primary hover:bg-primary-fixed-dim transition-colors shadow-[0_10px_30px_rgba(173,198,255,0.2)]" type="button">Request Quote</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg mt-section-gap border-t border-white/5 bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter flex flex-col md:flex-row justify-between items-center gap-stack-md">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">JEFF G. WILSON</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">GitHub</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">LinkedIn</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Instagram</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Email</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Download CV</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant">© 2024 Jeff G. Wilson. Built with Liquid Glass.</div>
+</div>
+</footer>
+<script>
+        // Simple JS to handle styling of custom tabs since we're using radio buttons for pure CSS switching of content
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = ['research', 'web', 'mobile'];
+            
+            const updateTabStyles = () => {
+                tabs.forEach(tab => {
+                    const radio = document.getElementById(`tab-${tab}`);
+                    const label = document.getElementById(`label-${tab}`);
+                    const icon = label.querySelector('.material-symbols-outlined');
+                    
+                    if(radio.checked) {
+                        label.classList.remove('text-on-surface-variant');
+                        label.classList.add('bg-primary/10', 'text-primary');
+                        icon.style.fontVariationSettings = "'FILL' 1";
+                    } else {
+                        label.classList.remove('bg-primary/10', 'text-primary');
+                        label.classList.add('text-on-surface-variant');
+                        icon.style.fontVariationSettings = "'FILL' 0";
+                    }
+                });
+            };
+
+            // Initial setup
+            updateTabStyles();
+
+            // Listeners
+            tabs.forEach(tab => {
+                document.getElementById(`tab-${tab}`).addEventListener('change', updateTabStyles);
+            });
+        });
+    </script>
+</body></html>

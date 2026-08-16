@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Console | Jeff G. Wilson</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-panel {
+                @apply bg-white/[0.03] backdrop-blur-[12px] border border-white/10;
+            }
+            .glass-panel-heavy {
+                @apply bg-white/[0.08] backdrop-blur-[24px] border border-white/20;
+            }
+            .glass-glow {
+                box-shadow: inset 0 0 20px rgba(173, 198, 255, 0.05);
+            }
+            .text-glow {
+                text-shadow: 0 0 10px rgba(173, 198, 255, 0.3);
+            }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#8a90a7",
+                        "surface-container-low": "#0d1c2d",
+                        "on-error-container": "#ffdad6",
+                        "inverse-primary": "#005ac2",
+                        "on-primary-container": "#00285d",
+                        "on-error": "#690005",
+                        "surface-tint": "#adc6ff",
+                        "surface-variant": "#273647",
+                        "secondary": "#d0bcff",
+                        "surface-container-high": "#1c2b3c",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "tertiary": "#c0c6de",
+                        "tertiary-fixed-dim": "#c0c6de",
+                        "outline": "#8c909f",
+                        "on-secondary-fixed-variant": "#5516be",
+                        "on-tertiary": "#2a3043",
+                        "background": "#051424",
+                        "on-surface": "#d4e4fa",
+                        "primary-fixed": "#d8e2ff",
+                        "tertiary-fixed": "#dce1fb",
+                        "secondary-container": "#571bc1",
+                        "inverse-surface": "#d4e4fa",
+                        "on-tertiary-fixed": "#151b2d",
+                        "surface": "#051424",
+                        "on-tertiary-container": "#23293c",
+                        "inverse-on-surface": "#233143",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-lowest": "#010f1f",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-secondary": "#3c0091",
+                        "on-secondary-container": "#c4abff",
+                        "on-background": "#d4e4fa",
+                        "primary-container": "#4d8eff",
+                        "outline-variant": "#424754",
+                        "secondary-fixed": "#e9ddff",
+                        "surface-container-highest": "#273647",
+                        "error-container": "#93000a",
+                        "surface-container": "#122131",
+                        "on-secondary-fixed": "#23005c",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#051424",
+                        "primary": "#adc6ff",
+                        "on-tertiary-fixed-variant": "#40465a",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-bright": "#2c3a4c",
+                        "on-primary": "#002e6a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "section-gap": "120px",
+                        "container-max": "1200px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "display-lg-mobile": ["Geist"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display-lg-mobile": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#020617] text-on-surface antialiased min-h-screen relative overflow-x-hidden selection:bg-primary/30 selection:text-primary-fixed">
+<!-- Ambient Noise Overlay -->
+<div class="fixed inset-0 pointer-events-none z-[-1] opacity-5">
+<svg viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<filter id="noiseFilter">
+<feturbulence basefrequency="0.65" numoctaves="3" stitchtiles="stitch" type="fractalNoise"></feturbulence>
+</filter>
+<rect filter="url(#noiseFilter)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<!-- Background Glows -->
+<div class="fixed top-0 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none z-[-1] -translate-x-1/2 -translate-y-1/2"></div>
+<div class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[150px] pointer-events-none z-[-1] translate-x-1/3 translate-y-1/3"></div>
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 border-r border-white/5 bg-surface-container dark:bg-surface-container backdrop-blur-2xl shadow-lg z-50 flex flex-col p-4 space-y-2 hidden md:flex">
+<div class="mb-8 px-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 overflow-hidden">
+<img alt="Jeff Wilson" class="w-full h-full object-cover" data-alt="A detailed, professional headshot of a mature tech executive with a confident expression, lit by dramatic cinematic lighting. The background is a blurred server room or sleek office setting, emphasizing a premium, high-tech aesthetic with cool blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPRGjkqE1k30D5paqV5BTD8LnqUVXjVAkrgO0G482FndZ5gY21Woe0fVXfEund0q48JZRQ7rL6GXAhXg2iz34abzmQHG57UIEu0NzdxYIfapnfV3cR-crDCLGjzeX-62pxrk062whDm4ziI1ZG8eONScrzE6NPWs0qzgssD_xaQNpHc8TrP38__ABlf0YMNfwkNbbW2Pi8vEtg8dokVmaSntR7cfwpoo83Fp-jtP9Z2vMH9Y3F2Od7"/>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Jeff G. Wilson</h2>
+<p class="font-label-mono text-label-mono text-on-surface-variant opacity-70">Admin Console</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-1 pr-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold font-label-mono text-label-mono transition-transform hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:text-on-surface rounded-lg font-label-mono text-label-mono transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">person</span>
+                    Profile
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:text-on-surface rounded-lg font-label-mono text-label-mono transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">folder</span>
+                    Projects
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:text-on-surface rounded-lg font-label-mono text-label-mono transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">science</span>
+                    Research
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:text-on-surface rounded-lg font-label-mono text-label-mono transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">work</span>
+                    Experience
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:text-on-surface rounded-lg font-label-mono text-label-mono transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">school</span>
+                    Education
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:text-on-surface rounded-lg font-label-mono text-label-mono transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">psychology</span>
+                    Skills
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:text-on-surface rounded-lg font-label-mono text-label-mono transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">image</span>
+                    Media
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:text-on-surface rounded-lg font-label-mono text-label-mono transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">description</span>
+                    CV
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:text-on-surface rounded-lg font-label-mono text-label-mono transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">mail</span>
+                    Inquiries
+                </a>
+<div class="mt-4 pt-4 border-t border-white/5">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 hover:text-on-surface rounded-lg font-label-mono text-label-mono transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+                        Settings
+                    </a>
+</div>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 w-full h-full overflow-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full z-40 border-b border-white/5 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-white/10 shadow-sm flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-on-surface font-bold hidden sm:block">Admin Console</h1>
+<div class="relative ml-4 hidden md:flex items-center group">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant pointer-events-none group-focus-within:text-primary transition-colors">search</span>
+<input class="bg-white/5 border border-white/10 rounded-full py-2 pl-10 pr-4 text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary/50 focus:ring-2 ring-primary/20 transition-all w-64 glass-glow" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 rounded-full hover:bg-white/5 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">apps</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary/20 border border-primary/30 overflow-hidden ml-2 cursor-pointer">
+<img alt="Jeff Wilson" class="w-full h-full object-cover" data-alt="A detailed macro shot of a sleek, abstract metallic texture with blue and purple iridescence, suitable for a professional avatar placeholder. The lighting highlights the curved surfaces, creating a premium, futuristic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASgNRAGaQrbfhyXrvIkVqdOevZtut_u1EjM8JkdyGskLY8peSdeDHBlsp_lLMsC-_YSA1K7_asu9KkUYsZSbJy-n5xmlHBbQOcrS8K3yCLuIfClj5q61VOVHtBxsaHRGruzH-gamphtmXtO_yliBwvdUQWbdByfMMgHk1CsFOmDX1BMKNxV5icpuyGE0N64fmFruezRRmHU01MBVYSUZiM1fBf8pVkQ1mA8Pz7FRLjbgxlSbbO8vCD"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto p-margin-mobile md:p-gutter pb-section-gap">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<!-- Welcome Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-white/5 pb-stack-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight text-glow">Welcome back, Jeff.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Here's what's happening with your portfolio today.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2 rounded-full glass-panel text-on-surface font-label-mono text-label-mono hover:bg-white/10 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span> Export Data
+                            </button>
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary font-label-mono text-label-mono hover:bg-primary/90 transition-colors font-bold shadow-[0_0_15px_rgba(173,198,255,0.3)]">
+                                New Entry
+                            </button>
+</div>
+</div>
+<!-- Statistics Grid (Bento) -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-stack-md">
+<!-- Stat Card 1 -->
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-2 relative overflow-hidden group hover:border-primary/30 transition-colors cursor-default">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-colors"></div>
+<span class="material-symbols-outlined text-primary mb-2">folder_open</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider text-xs">Total Projects</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">24</span>
+</div>
+<!-- Stat Card 2 -->
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-2 relative overflow-hidden group hover:border-secondary/30 transition-colors cursor-default">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary/5 rounded-full blur-xl group-hover:bg-secondary/10 transition-colors"></div>
+<span class="material-symbols-outlined text-secondary mb-2">science</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider text-xs">Research Papers</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">12</span>
+</div>
+<!-- Stat Card 3 -->
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-2 relative overflow-hidden group hover:border-tertiary/30 transition-colors cursor-default">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary/5 rounded-full blur-xl group-hover:bg-tertiary/10 transition-colors"></div>
+<span class="material-symbols-outlined text-tertiary mb-2">psychology</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider text-xs">Skills Tracked</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">48</span>
+</div>
+<!-- Stat Card 4 -->
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-2 relative overflow-hidden group hover:border-primary/30 transition-colors cursor-default">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-colors"></div>
+<span class="material-symbols-outlined text-primary mb-2">work_history</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-wider text-xs">Years Experience</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">15+</span>
+</div>
+<!-- Stat Card 5 -->
+<div class="glass-panel-heavy border-error/20 p-6 rounded-xl flex flex-col gap-2 relative overflow-hidden group hover:border-error/40 transition-colors cursor-default">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-error/10 rounded-full blur-xl group-hover:bg-error/20 transition-colors"></div>
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-error mb-2">mark_email_unread</span>
+<span class="w-2 h-2 bg-error rounded-full animate-pulse"></span>
+</div>
+<span class="font-label-mono text-label-mono text-error uppercase tracking-wider text-xs">Unread Inquiries</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">3</span>
+</div>
+</div>
+<!-- Main Dashboard Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-lg">
+<!-- Recent Activity List (Col Span 2) -->
+<div class="lg:col-span-2 space-y-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Recent Activity</h3>
+<a class="font-label-mono text-label-mono text-primary hover:underline text-sm flex items-center" href="#">View All <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span></a>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden divide-y divide-white/5">
+<!-- Activity Item -->
+<div class="p-4 hover:bg-white/5 transition-colors flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm">add_circle</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface"><span class="font-bold">Project added:</span> "Quantum Neural Network Interface"</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-xs mt-1">2 hours ago</p>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</div>
+<!-- Activity Item -->
+<div class="p-4 hover:bg-white/5 transition-colors flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center shrink-0 border border-secondary/20">
+<span class="material-symbols-outlined text-secondary text-sm">upload_file</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface"><span class="font-bold">CV updated:</span> "Wilson_CV_2024_v2.pdf"</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-xs mt-1">Yesterday at 4:30 PM</p>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</div>
+<!-- Activity Item -->
+<div class="p-4 hover:bg-white/5 transition-colors flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center shrink-0 border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary text-sm">edit_document</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface"><span class="font-bold">Research abstract edited:</span> "Liquid Glass Aesthetics in Modern UI"</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-xs mt-1">Oct 24, 2024</p>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</div>
+<!-- Activity Item -->
+<div class="p-4 hover:bg-white/5 transition-colors flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 border border-white/10">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">settings</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface"><span class="font-bold">System setting changed:</span> API Key regenerated</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-xs mt-1">Oct 22, 2024</p>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</div>
+</div>
+</div>
+<!-- Inquiry Overview (Col Span 1) -->
+<div class="space-y-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Inquiry Overview</h3>
+<div class="px-2 py-1 bg-white/10 rounded text-xs font-label-mono text-label-mono text-on-surface">Last 7 Days</div>
+</div>
+<div class="glass-panel-heavy rounded-xl p-6 relative overflow-hidden">
+<!-- Abstract decorative graphic -->
+<div class="absolute right-0 top-0 opacity-20 pointer-events-none translate-x-1/4 -translate-y-1/4">
+<svg fill="none" height="200" viewbox="0 0 200 200" width="200" xmlns="http://www.w3.org/2000/svg">
+<circle class="text-primary" cx="100" cy="100" r="99" stroke="currentColor" stroke-dasharray="4 8" stroke-width="2"></circle>
+<circle class="text-secondary" cx="100" cy="100" r="60" stroke="currentColor" stroke-width="1"></circle>
+</svg>
+</div>
+<div class="space-y-6 relative z-10">
+<!-- Inquiry Category -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-md text-body-md font-bold text-on-surface flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary inline-block"></span> Research Collaboration
+                                            </span>
+<span class="font-label-mono text-label-mono text-primary font-bold">42%</span>
+</div>
+<div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[42%] shadow-[0_0_10px_rgba(173,198,255,0.5)]"></div>
+</div>
+<p class="text-xs font-label-mono text-on-surface-variant mt-2 text-right">5 recent messages</p>
+</div>
+<!-- Inquiry Category -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-md text-body-md font-bold text-on-surface flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary inline-block"></span> Web / App Project
+                                            </span>
+<span class="font-label-mono text-label-mono text-secondary font-bold">35%</span>
+</div>
+<div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full w-[35%] shadow-[0_0_10px_rgba(208,188,255,0.5)]"></div>
+</div>
+<p class="text-xs font-label-mono text-on-surface-variant mt-2 text-right">4 recent messages</p>
+</div>
+<!-- Inquiry Category -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-md text-body-md font-bold text-on-surface flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary inline-block"></span> Consulting / Speaking
+                                            </span>
+<span class="font-label-mono text-label-mono text-tertiary font-bold">23%</span>
+</div>
+<div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full w-[23%] shadow-[0_0_10px_rgba(192,198,222,0.5)]"></div>
+</div>
+<p class="text-xs font-label-mono text-on-surface-variant mt-2 text-right">2 recent messages</p>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-white/10 text-center">
+<button class="text-sm font-label-mono text-label-mono text-on-surface hover:text-primary transition-colors">Go to Inbox</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
