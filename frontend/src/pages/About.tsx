@@ -18,6 +18,7 @@ import { GlassBadge } from '../components/common/GlassBadge';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { Profile, Education, Skill, CVItem } from '../types';
 import { api } from '../api/client';
+import { downloadActiveCV } from '../utils/download';
 
 export const About: React.FC = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -25,6 +26,7 @@ export const About: React.FC = () => {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [cv, setCV] = useState<CVItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [downloadingCV, setDownloadingCV] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -53,9 +55,14 @@ export const About: React.FC = () => {
     };
   }, []);
 
-  const handleDownloadCV = () => {
-    if (cv && cv.file_url) {
-      window.open(cv.file_url, '_blank');
+  const handleDownloadCV = async () => {
+    setDownloadingCV(true);
+    try {
+      await downloadActiveCV(cv?.file_url, cv?.title || 'Jeff_G_Wilson_CV.pdf');
+    } catch (err) {
+      console.error('Error downloading CV:', err);
+    } finally {
+      setDownloadingCV(false);
     }
   };
 
@@ -105,14 +112,17 @@ export const About: React.FC = () => {
           </div>
 
           <div className="pt-4 flex flex-wrap gap-4">
-            <GlassButton
-              variant="primary"
-              size="md"
-              onClick={handleDownloadCV}
-              icon={<Download className="w-4 h-4" />}
+            <a
+              href="/api/cv/download"
+              download="Jeff_G_Wilson_CV.pdf"
+              onClick={(e) => {
+                handleDownloadCV();
+              }}
+              className="inline-flex items-center justify-center font-label-mono font-bold transition-all duration-300 active:scale-95 text-sm px-5 py-2.5 rounded-full gap-2 bg-primary text-on-primary hover:bg-primary/90 shadow-[0_0_20px_rgba(173,198,255,0.3)] cursor-pointer"
             >
-              Download Complete CV
-            </GlassButton>
+              <Download className={`w-4 h-4 ${downloadingCV ? 'animate-bounce' : ''}`} />
+              <span>{downloadingCV ? 'Downloading...' : 'Download Complete CV'}</span>
+            </a>
 
             <Link to="/work-with-me">
               <GlassButton variant="secondary" size="md" icon={<Mail className="w-4 h-4" />}>

@@ -4,6 +4,7 @@ import { Download, Mail, Menu, X, Shield, ExternalLink } from 'lucide-react';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { Profile } from '../../types';
 import { api } from '../../api/client';
+import { downloadActiveCV } from '../../utils/download';
 import { clsx } from 'clsx';
 
 interface NavbarProps {
@@ -14,6 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile: initialProfile }) => {
   const [profile, setProfile] = useState<Profile | null>(initialProfile || null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cvUrl, setCvUrl] = useState<string | null>(null);
+  const [downloading, setDownloading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,11 +42,15 @@ export const Navbar: React.FC<NavbarProps> = ({ profile: initialProfile }) => {
     { label: 'Work With Me', to: '/work-with-me' },
   ];
 
-  const handleDownloadCV = () => {
-    if (cvUrl) {
-      window.open(cvUrl, '_blank');
-    } else {
+  const handleDownloadCV = async () => {
+    setDownloading(true);
+    try {
+      await downloadActiveCV(cvUrl, 'Jeff_G_Wilson_CV.pdf');
+    } catch (err) {
+      console.error('Download error:', err);
       navigate('/cv');
+    } finally {
+      setDownloading(false);
     }
   };
 
@@ -84,13 +90,17 @@ export const Navbar: React.FC<NavbarProps> = ({ profile: initialProfile }) => {
         <div className="flex items-center space-x-3">
           <ThemeToggle />
 
-          <button
-            onClick={handleDownloadCV}
-            className="bg-primary text-on-primary font-label-mono text-xs font-bold px-4 py-2 rounded-full hover:bg-primary/90 transition-all duration-200 shadow-[0_0_15px_rgba(173,198,255,0.25)] flex items-center gap-1.5"
+          <a
+            href="/api/cv/download"
+            download="Jeff_G_Wilson_CV.pdf"
+            onClick={(e) => {
+              handleDownloadCV();
+            }}
+            className="bg-primary text-on-primary font-label-mono text-xs font-bold px-4 py-2 rounded-full hover:bg-primary/90 transition-all duration-200 shadow-[0_0_15px_rgba(173,198,255,0.25)] flex items-center gap-1.5 cursor-pointer"
           >
-            <Download className="w-3.5 h-3.5" />
-            <span>Download CV</span>
-          </button>
+            <Download className={`w-3.5 h-3.5 ${downloading ? 'animate-bounce' : ''}`} />
+            <span>{downloading ? 'Downloading...' : 'Download CV'}</span>
+          </a>
 
           <Link
             to="/contact"
@@ -158,16 +168,18 @@ export const Navbar: React.FC<NavbarProps> = ({ profile: initialProfile }) => {
           </div>
 
           <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
-            <button
+            <a
+              href="/api/cv/download"
+              download="Jeff_G_Wilson_CV.pdf"
               onClick={() => {
                 setMobileMenuOpen(false);
                 handleDownloadCV();
               }}
-              className="w-full bg-primary text-on-primary font-label-mono text-sm font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg"
+              className="w-full bg-primary text-on-primary font-label-mono text-sm font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg cursor-pointer"
             >
-              <Download className="w-4 h-4" />
-              <span>Download CV</span>
-            </button>
+              <Download className={`w-4 h-4 ${downloading ? 'animate-bounce' : ''}`} />
+              <span>{downloading ? 'Downloading...' : 'Download CV'}</span>
+            </a>
 
             <Link
               to="/contact"

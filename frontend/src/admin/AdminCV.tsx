@@ -11,6 +11,7 @@ import { EmptyState } from '../components/common/EmptyState';
 import { CVItem } from '../types';
 import { api } from '../api/client';
 import { useToast } from '../contexts/ToastContext';
+import { downloadFile, resolveFileUrl } from '../utils/download';
 
 export const AdminCV: React.FC = () => {
   const [cvList, setCvList] = useState<CVItem[]>([]);
@@ -168,14 +169,22 @@ export const AdminCV: React.FC = () => {
 
                 <GlassTableCell className="text-right">
                   <div className="flex items-center justify-end gap-2">
+                    <button
+                      onClick={() => downloadFile(cv.file_url, cv.title || 'Jeff_G_Wilson_CV.pdf')}
+                      className="p-2 rounded-lg glass-panel text-on-surface-variant hover:text-primary transition-colors"
+                      title="Download PDF"
+                    >
+                      <Download className="w-4 h-4" />
+                    </button>
+
                     <a
-                      href={cv.file_url}
+                      href={resolveFileUrl(cv.file_url)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 rounded-lg glass-panel text-on-surface-variant hover:text-primary transition-colors"
-                      title="Download"
+                      title="Open in New Tab"
                     >
-                      <Download className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4" />
                     </a>
 
                     <button

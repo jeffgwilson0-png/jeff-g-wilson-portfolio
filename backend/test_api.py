@@ -55,6 +55,15 @@ def test_api():
     print(f"[OK] Dashboard Stats: {stats['total_projects']} projects, {stats['total_research']} papers, {stats['total_inquiries']} inquiries (Unread: {stats['unread_inquiries']})")
     print(f"     Inquiry Categories Breakdown: {stats['inquiry_categories']}")
 
+    # 7. CV Download & Active Status
+    req = urllib.request.urlopen(f"{base}/cv/active")
+    cv_info = json.loads(req.read().decode('utf-8'))
+    print(f"[OK] Active CV: {cv_info['title']} (version: {cv_info['version']})")
+
+    cv_dl = urllib.request.urlopen(f"{base}/cv/download")
+    cd_header = cv_dl.headers.get('Content-Disposition')
+    print(f"[OK] CV Download Endpoint: HTTP {cv_dl.status}, Content-Disposition: {cd_header}, Size: {len(cv_dl.read())} bytes")
+
     print("\nALL BACKEND API AND DATABASE TESTS PASSED WITH 100% SUCCESS!")
 
 if __name__ == "__main__":

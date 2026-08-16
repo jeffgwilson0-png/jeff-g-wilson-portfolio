@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Download, FileText, ExternalLink, Calendar, CheckCircle2, ArrowLeft } from 'lucide-react';
+import { Download, FileText, ExternalLink, Calendar, CheckCircle2, ArrowLeft, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GlassCard } from '../components/common/GlassCard';
 import { GlassButton } from '../components/common/GlassButton';
@@ -7,10 +6,12 @@ import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { EmptyState } from '../components/common/EmptyState';
 import { CVItem } from '../types';
 import { api } from '../api/client';
+import { downloadActiveCV, resolveFileUrl } from '../utils/download';
 
 export const CVViewer: React.FC = () => {
   const [cv, setCV] = useState<CVItem | null>(null);
   const [loading, setLoading] = useState(true);
+  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     api.getActiveCV()
@@ -19,9 +20,14 @@ export const CVViewer: React.FC = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const handleDownload = () => {
-    if (cv && cv.file_url) {
-      window.open(cv.file_url, '_blank');
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      await downloadActiveCV(cv?.file_url, cv?.title || 'Jeff_G_Wilson_CV.pdf');
+    } catch (err) {
+      console.error('Error downloading CV:', err);
+    } finally {
+      setDownloading(false);
     }
   };
 
@@ -69,17 +75,20 @@ export const CVViewer: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 pt-4">
-          <GlassButton
-            variant="primary"
-            size="lg"
-            onClick={handleDownload}
-            icon={<Download className="w-4 h-4" />}
+          <a
+            href="/api/cv/download"
+            download="Jeff_G_Wilson_CV.pdf"
+            onClick={(e) => {
+              handleDownload();
+            }}
+            className="inline-flex items-center justify-center font-label-mono font-bold transition-all duration-300 active:scale-95 text-base px-8 py-3.5 rounded-full gap-2.5 bg-primary text-on-primary hover:bg-primary/90 shadow-[0_0_20px_rgba(173,198,255,0.3)] cursor-pointer"
           >
-            Download PDF
-          </GlassButton>
+            <Download className={`w-4 h-4 ${downloading ? 'animate-bounce' : ''}`} />
+            <span>{downloading ? 'Downloading...' : 'Download PDF'}</span>
+          </a>
 
           {cv?.file_url && (
-            <a href={cv.file_url} target="_blank" rel="noopener noreferrer">
+            <a href={resolveFileUrl(cv.file_url)} target="_blank" rel="noopener noreferrer">
               <GlassButton variant="secondary" size="lg" icon={<ExternalLink className="w-4 h-4" />}>
                 Open in New Tab
               </GlassButton>

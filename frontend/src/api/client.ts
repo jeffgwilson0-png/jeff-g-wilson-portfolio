@@ -514,6 +514,14 @@ export const api = {
     return handleResponse<CVItem | null>(res);
   },
 
+  getDownloadActiveCVUrl(): string {
+    return `${API_BASE}/cv/download`;
+  },
+
+  getDownloadCVUrl(id: number): string {
+    return `${API_BASE}/cv/${id}/download`;
+  },
+
   async getAllCVs(): Promise<CVItem[]> {
     const res = await fetch(`${API_BASE}/cv/all`, {
       headers: getAuthHeaders(),

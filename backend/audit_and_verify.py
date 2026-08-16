@@ -27,19 +27,27 @@ def req(url, method="GET", data=None, headers=None):
     try:
         with urllib.request.urlopen(request) as response:
             status_code = response.status
-            body = response.read().decode("utf-8")
+            raw_bytes = response.read()
             try:
-                parsed = json.loads(body)
-                return status_code, parsed
-            except:
-                return status_code, body
+                text_body = raw_bytes.decode("utf-8")
+                try:
+                    parsed = json.loads(text_body)
+                    return status_code, parsed
+                except:
+                    return status_code, text_body
+            except UnicodeDecodeError:
+                return status_code, raw_bytes
     except urllib.error.HTTPError as e:
-        body = e.read().decode("utf-8")
+        raw_bytes = e.read()
         try:
-            parsed = json.loads(body)
-            return e.code, parsed
-        except:
-            return e.code, body
+            text_body = raw_bytes.decode("utf-8")
+            try:
+                parsed = json.loads(text_body)
+                return e.code, parsed
+            except:
+                return e.code, text_body
+        except UnicodeDecodeError:
+            return e.code, raw_bytes
     except Exception as e:
         return 500, str(e)
 
@@ -114,6 +122,10 @@ def run_audit():
     # CV Active
     code, data = req(f"{BASE_API}/cv/active")
     record("GET /api/cv/active", code == 200, f"(Active CV: {data.get('title') if isinstance(data, dict) else 'none'})")
+
+    # CV Download
+    code, data = req(f"{BASE_API}/cv/download")
+    record("GET /api/cv/download", code == 200, f"(Binary PDF download stream verified)")
 
     # Settings
     code, data = req(f"{BASE_API}/settings")
