@@ -1,6 +1,5 @@
 import os
 import uuid
-import aiofiles
 from fastapi import UploadFile, HTTPException, status
 from app.config import settings
 
@@ -42,9 +41,9 @@ async def save_upload_file(file: UploadFile, subfolder: str = "general") -> dict
     
     file_path = os.path.join(target_dir, unique_filename)
     
-    # Read and write in chunks to calculate size and save
+    # Read and write in chunks to calculate size and save safely
     size = 0
-    async with aiofiles.open(file_path, 'wb') as out_file:
+    with open(file_path, "wb") as out_file:
         while content := await file.read(1024 * 1024):  # 1MB chunks
             size += len(content)
             if size > MAX_SIZE_BYTES:
@@ -57,7 +56,7 @@ async def save_upload_file(file: UploadFile, subfolder: str = "general") -> dict
                     status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
                     detail=f"File size exceeds maximum limit of {settings.MAX_UPLOAD_SIZE_MB}MB"
                 )
-            await out_file.write(content)
+            out_file.write(content)
             
     # Formulate URL
     relative_url = f"/uploads/{subfolder}/{unique_filename}"
