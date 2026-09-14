@@ -2,15 +2,19 @@ const API_BASE = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, ''
 
 /**
  * Resolves a full, downloadable URL whether relative or absolute.
+ * Gracefully defaults to the bundled static CV if not provided.
  */
-export function resolveFileUrl(url: string): string {
-  if (!url) return `${API_BASE}/cv/download`;
+export function resolveFileUrl(url?: string | null): string {
+  if (!url || url.includes('/api/cv/download')) {
+    return '/Jeff_G_Wilson_CV.pdf';
+  }
+
   if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('blob:')) {
     return url;
   }
 
-  // Handle absolute or relative paths with API_BASE
-  if (url.startsWith('/')) {
+  // If pointing to uploads and on a separate backend origin
+  if (url.startsWith('/uploads')) {
     if (API_BASE.startsWith('http://') || API_BASE.startsWith('https://')) {
       try {
         const origin = new URL(API_BASE).origin;
@@ -20,25 +24,32 @@ export function resolveFileUrl(url: string): string {
       }
     }
   }
-  return url;
+
+  // If pointing to static public file or relative path
+  if (url.startsWith('/')) {
+    return url;
+  }
+
+  return `/${url}`;
 }
 
 /**
  * Downloads a file directly to the user's device.
- * Uses native download anchor and blob streaming fallback.
+ * Employs direct anchor download, blob stream fetching, and static fallback.
  */
-export async function downloadFile(url: string, defaultFilename: string = 'Jeff_G_Wilson_CV.pdf'): Promise<boolean> {
+export async function downloadFile(url?: string | null, defaultFilename: string = 'Jeff_G_Wilson_CV.pdf'): Promise<boolean> {
   const resolvedUrl = resolveFileUrl(url);
-  let finalFilename = defaultFilename;
-  if (!finalFilename.toLowerCase().endsWith('.pdf') && resolvedUrl.toLowerCase().endsWith('.pdf')) {
+  let finalFilename = defaultFilename || 'Jeff_G_Wilson_CV.pdf';
+  if (!finalFilename.toLowerCase().endsWith('.pdf')) {
     finalFilename += '.pdf';
   }
 
-  // Strategy 1: Direct native browser link download trigger
+  // Strategy 1: Direct native download trigger (works on desktop & mobile)
   try {
     const link = document.createElement('a');
     link.href = resolvedUrl;
     link.setAttribute('download', finalFilename);
+    link.setAttribute('target', '_blank');
     link.style.display = 'none';
     document.body.appendChild(link);
     link.click();
@@ -46,12 +57,12 @@ export async function downloadFile(url: string, defaultFilename: string = 'Jeff_
       if (document.body.contains(link)) {
         document.body.removeChild(link);
       }
-    }, 300);
+    }, 400);
   } catch (e) {
-    console.warn('Native download click failed, attempting blob fetch:', e);
+    console.warn('Native download click failed:', e);
   }
 
-  // Strategy 2: Fetch Blob to guarantee binary download
+  // Strategy 2: Fetch Blob to guarantee binary save
   try {
     const response = await fetch(resolvedUrl);
     if (!response.ok) {
@@ -79,6 +90,7 @@ export async function downloadFile(url: string, defaultFilename: string = 'Jeff_
       const fallbackLink = document.createElement('a');
       fallbackLink.href = '/Jeff_G_Wilson_CV.pdf';
       fallbackLink.download = finalFilename;
+      fallbackLink.setAttribute('target', '_blank');
       fallbackLink.style.display = 'none';
       document.body.appendChild(fallbackLink);
       fallbackLink.click();
@@ -86,7 +98,7 @@ export async function downloadFile(url: string, defaultFilename: string = 'Jeff_
         if (document.body.contains(fallbackLink)) {
           document.body.removeChild(fallbackLink);
         }
-      }, 300);
+      }, 400);
       return true;
     } catch (fallbackErr) {
       console.error('All download mechanisms failed:', fallbackErr);
@@ -96,10 +108,11 @@ export async function downloadFile(url: string, defaultFilename: string = 'Jeff_
 }
 
 /**
- * Convenience helper to download the official active CV
+ * Convenience helper to download the official active CV.
+ * Guarantees a valid PDF download on both local and live deployments.
  */
 export async function downloadActiveCV(fileUrl?: string | null, customFilename?: string | null): Promise<boolean> {
-  const targetUrl = `${API_BASE}/cv/download`;
+  const targetUrl = fileUrl || '/Jeff_G_Wilson_CV.pdf';
   const filename = customFilename || 'Jeff_G_Wilson_CV.pdf';
   return downloadFile(targetUrl, filename);
 }

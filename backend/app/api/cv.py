@@ -55,6 +55,18 @@ def download_active_cv(db: Session = Depends(get_db)):
                     file_path = os.path.join(cv_dir, f)
                     break
     
+    # Fallback to root or frontend static CV if not found in uploads
+    if not file_path or not os.path.exists(file_path):
+        root_candidates = [
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "Jeff_G_Wilson_CV.pdf")),
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "uploads", "cv", "Jeff_G_Wilson_Resume_2026.pdf")),
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "frontend", "public", "Jeff_G_Wilson_CV.pdf")),
+        ]
+        for candidate in root_candidates:
+            if os.path.exists(candidate):
+                file_path = candidate
+                break
+
     if not file_path or not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="CV PDF file not found on server")
     
