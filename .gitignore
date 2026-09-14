@@ -50,9 +50,13 @@ wheels/
 .installed.cfg
 *.egg
 
-# Uploads (ignore user uploaded files but keep directory structure)
+# Uploads (keep directory structure and essential CV & profile assets)
 backend/uploads/*
 !backend/uploads/.gitkeep
+!backend/uploads/cv/
+!backend/uploads/cv/*
+!backend/uploads/profile/
+!backend/uploads/profile/*
 
 # IDE and OS files
 .vscode/

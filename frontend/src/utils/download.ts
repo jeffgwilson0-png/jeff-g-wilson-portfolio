@@ -5,7 +5,7 @@ const API_BASE = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, ''
  * Gracefully defaults to the bundled static CV if not provided.
  */
 export function resolveFileUrl(url?: string | null): string {
-  if (!url || url.includes('/api/cv/download')) {
+  if (!url || url.includes('/api/cv/download') || url.includes('/uploads/cv/')) {
     return '/Jeff_G_Wilson_CV.pdf';
   }
 
@@ -13,7 +13,7 @@ export function resolveFileUrl(url?: string | null): string {
     return url;
   }
 
-  // If pointing to uploads and on a separate backend origin
+  // If pointing to uploads (e.g. avatars, project images) and on a separate backend origin
   if (url.startsWith('/uploads')) {
     if (API_BASE.startsWith('http://') || API_BASE.startsWith('https://')) {
       try {
@@ -35,7 +35,7 @@ export function resolveFileUrl(url?: string | null): string {
 
 /**
  * Downloads a file directly to the user's device.
- * Employs direct anchor download, blob stream fetching, and static fallback.
+ * Employs clean direct download and blob stream fetching.
  */
 export async function downloadFile(url?: string | null, defaultFilename: string = 'Jeff_G_Wilson_CV.pdf'): Promise<boolean> {
   const resolvedUrl = resolveFileUrl(url);
@@ -44,12 +44,11 @@ export async function downloadFile(url?: string | null, defaultFilename: string 
     finalFilename += '.pdf';
   }
 
-  // Strategy 1: Direct native download trigger (works on desktop & mobile)
+  // Strategy 1: Direct anchor download
   try {
     const link = document.createElement('a');
     link.href = resolvedUrl;
     link.setAttribute('download', finalFilename);
-    link.setAttribute('target', '_blank');
     link.style.display = 'none';
     document.body.appendChild(link);
     link.click();
@@ -58,8 +57,9 @@ export async function downloadFile(url?: string | null, defaultFilename: string 
         document.body.removeChild(link);
       }
     }, 400);
+    return true;
   } catch (e) {
-    console.warn('Native download click failed:', e);
+    console.warn('Native download click failed, attempting blob fetch:', e);
   }
 
   // Strategy 2: Fetch Blob to guarantee binary save

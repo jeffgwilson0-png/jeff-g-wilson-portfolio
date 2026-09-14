@@ -58,8 +58,13 @@ def download_active_cv(db: Session = Depends(get_db)):
     # Fallback to root or frontend static CV if not found in uploads
     if not file_path or not os.path.exists(file_path):
         root_candidates = [
-            os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "Jeff_G_Wilson_CV.pdf")),
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "uploads", "cv", "Jeff_G_Wilson_CV.pdf")),
             os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "uploads", "cv", "Jeff_G_Wilson_Resume_2026.pdf")),
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "Jeff_G_Wilson_CV.pdf")),
+            os.path.abspath(os.path.join(os.getcwd(), "Jeff_G_Wilson_CV.pdf")),
+            os.path.abspath(os.path.join(os.getcwd(), "uploads", "cv", "Jeff_G_Wilson_CV.pdf")),
+            os.path.abspath(os.path.join(os.getcwd(), "uploads", "cv", "Jeff_G_Wilson_Resume_2026.pdf")),
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "Jeff_G_Wilson_CV.pdf")),
             os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "frontend", "public", "Jeff_G_Wilson_CV.pdf")),
         ]
         for candidate in root_candidates:

@@ -22,7 +22,7 @@ export const CVViewer: React.FC = () => {
   }, []);
 
   // Primary downloadable PDF path - always resolves to a valid, live PDF
-  const fileUrl = cv?.file_url ? resolveFileUrl(cv.file_url) : '/Jeff_G_Wilson_CV.pdf';
+  const fileUrl = resolveFileUrl(cv?.file_url);
   const cvTitle = cv?.title || 'Jeff_G_Wilson_CV.pdf';
 
   const handleDownload = async () => {
@@ -35,7 +35,6 @@ export const CVViewer: React.FC = () => {
       const link = document.createElement('a');
       link.href = '/Jeff_G_Wilson_CV.pdf';
       link.download = 'Jeff_G_Wilson_CV.pdf';
-      link.target = '_blank';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -58,7 +57,7 @@ export const CVViewer: React.FC = () => {
 
         {/* Quick Action Buttons */}
         <div className="flex items-center gap-3">
-          <a href={fileUrl} target="_blank" rel="noopener noreferrer" download="Jeff_G_Wilson_CV.pdf">
+          <a href={fileUrl} target="_blank" rel="noopener noreferrer">
             <button
               type="button"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900/60 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 text-xs font-mono transition-colors cursor-pointer"
