@@ -5,29 +5,39 @@ import {
   Download,
   Mail,
   Brain,
-  Cpu,
-  Database,
   Code2,
-  Sparkles,
   ExternalLink,
   Github,
+  Linkedin,
   BookOpen,
-  ArrowUpRight,
-  CheckCircle2,
-  GraduationCap
+  GraduationCap,
+  Eye,
+  Briefcase,
+  MapPin,
+  Cpu,
+  Cloud,
+  BarChart3,
+  Layers
 } from 'lucide-react';
 import { GlassCard } from '../components/common/GlassCard';
 import { GlassButton } from '../components/common/GlassButton';
 import { GlassBadge } from '../components/common/GlassBadge';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
-import { Profile, Project, Research, Skill, CVItem } from '../types';
+import {
+  PythonIcon,
+  TensorFlowIcon,
+  KerasIcon,
+  ScikitLearnIcon,
+  NumPyIcon
+} from '../components/common/TechIcons';
+import { Profile, Research, Skill, CVItem, Experience } from '../types';
 import { api } from '../api/client';
 import { downloadActiveCV } from '../utils/download';
 
 export const Home: React.FC = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [featuredProjects, setFeaturedProjects] = useState<Project[]>([]);
   const [featuredResearch, setFeaturedResearch] = useState<Research[]>([]);
+  const [experiences, setExperiences] = useState<Experience[]>([]);
   const [skills, setSkills] = useState<Skill[]>([]);
   const [cv, setCV] = useState<CVItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -38,10 +48,10 @@ export const Home: React.FC = () => {
     let isMounted = true;
     const loadHomeData = async () => {
       try {
-        const [profRes, projRes, resRes, skillsRes, cvRes] = await Promise.allSettled([
+        const [profRes, resRes, expRes, skillsRes, cvRes] = await Promise.allSettled([
           api.getProfile(),
-          api.getProjects({ featured: true, published_only: true }),
           api.getResearch({ featured: true, published_only: true }),
+          api.getExperience(true),
           api.getSkills({ featured_only: true }),
           api.getActiveCV(),
         ]);
@@ -49,8 +59,8 @@ export const Home: React.FC = () => {
         if (!isMounted) return;
 
         if (profRes.status === 'fulfilled') setProfile(profRes.value);
-        if (projRes.status === 'fulfilled') setFeaturedProjects(projRes.value);
         if (resRes.status === 'fulfilled') setFeaturedResearch(resRes.value);
+        if (expRes.status === 'fulfilled') setExperiences(expRes.value);
         if (skillsRes.status === 'fulfilled') setSkills(skillsRes.value);
         if (cvRes.status === 'fulfilled') setCV(cvRes.value);
       } catch (err) {
@@ -78,324 +88,410 @@ export const Home: React.FC = () => {
   };
 
   const primaryResearch = featuredResearch && featuredResearch.length > 0 ? featuredResearch[0] : null;
+  const primaryExperience = experiences && experiences.length > 0 ? experiences[0] : null;
+
+  // Curated Research Interests
+  const researchInterests = [
+    'Scientific Machine Learning',
+    'Scientific Foundation Models',
+    'Deep Learning',
+    'Trustworthy and Uncertainty-Aware AI',
+    'Multimodal Learning',
+    'Inverse Problems',
+    'Machine Learning for Complex Systems',
+    'Representation Learning',
+    'Constraint-Aware Machine Learning',
+    'Generalization and Transfer Learning',
+  ];
+
+  // Signature Tech Stack matching reference image
+  const coreTechStack = [
+    { name: 'Python', icon: <PythonIcon size={52} /> },
+    { name: 'TensorFlow', icon: <TensorFlowIcon size={52} /> },
+    { name: 'Keras', icon: <KerasIcon size={52} /> },
+    { name: 'Scikit-learn', icon: <ScikitLearnIcon size={52} /> },
+    { name: 'NumPy', icon: <NumPyIcon size={52} /> },
+  ];
+
+  // Curated Technical Skills
+  const technicalSkillGroups = [
+    {
+      category: 'Machine Learning & AI',
+      icon: <Brain className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+      skills: [
+        'Machine Learning',
+        'Predictive Modelling',
+        'Natural Language Processing',
+        'Multimodal Learning',
+        'Trustworthy AI',
+      ],
+    },
+    {
+      category: 'Optimization & Computational Methods',
+      icon: <Cpu className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+      skills: [
+        'Genetic Algorithms',
+        'Constraint-Based Optimization',
+        'Algorithmic Problem Solving',
+        'Data Preprocessing',
+      ],
+    },
+    {
+      category: 'Programming',
+      icon: <Code2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+      skills: ['Python', 'Java', 'JavaScript'],
+    },
+    {
+      category: 'Data Science',
+      icon: <BarChart3 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+      skills: [
+        'Data Analytics',
+        'Statistical Evaluation',
+        'Machine Learning with Python',
+      ],
+    },
+    {
+      category: 'Frameworks & Tools',
+      icon: <Layers className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+      skills: ['NLTK', 'Django', 'OpenCV', 'ChromaDB'],
+    },
+    {
+      category: 'Cloud & Systems',
+      icon: <Cloud className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+      skills: ['AWS', 'Microsoft Azure', 'Google Cloud Platform', 'Linux', 'Windows'],
+    },
+  ];
+
+  if (loading) {
+    return (
+      <div className="min-h-[70vh] flex flex-col items-center justify-center space-y-4">
+        <LoadingSpinner size="lg" />
+        <span className="font-mono text-xs text-neutral-400 tracking-wider">
+          LOADING PORTFOLIO...
+        </span>
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-[1300px] mx-auto px-6 sm:px-8 space-y-28 md:space-y-36 pb-16">
-      {/* 1. Hero Section */}
-      <section className="min-h-[75vh] flex flex-col lg:flex-row items-center justify-between gap-12 pt-6">
-        {/* Left Column: Introductions & CTAs */}
-        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border-primary/30 text-primary font-mono text-xs mb-6 uppercase tracking-widest">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span>System Architecture & AI</span>
-          </div>
+    <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 space-y-16 pb-20 pt-4 sm:pt-8">
+      {/* 1. Hero Section matching Reference Image */}
+      <section className="flex flex-col items-center text-center">
+        {/* Profile Avatar */}
+        <div className="relative mx-auto w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border border-neutral-300 dark:border-white/20 shadow-lg">
+          <img
+            src={profile?.avatar_url || '/avatar.jpg'}
+            alt={profile?.name || 'Jeff G. Wilson'}
+            className="w-full h-full object-cover rounded-full"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = '/avatar.jpg';
+            }}
+          />
+        </div>
 
-          <h1 className="font-display text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-on-surface leading-[1.1] mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-on-surface via-primary to-secondary">
-              {profile?.name ? profile.name.toUpperCase() : 'JEFF G. WILSON'}
-            </span>
-          </h1>
+        {/* Hero Headline */}
+        <h1 className="text-3xl sm:text-5xl lg:text-[50px] font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.16] mt-6 mb-4 max-w-2xl mx-auto">
+          Hi, I'm {profile?.name || 'Jeff G. Wilson'}, AI,
+          <br />
+          Machine Learning &amp;
+          <br />
+          Software Engineer
+        </h1>
 
-          <p className="font-display text-lg sm:text-2xl text-on-surface-variant font-medium mb-6">
-            {profile?.headline || 'Computer Engineer | Data Scientist | AI / ML Researcher'}
-          </p>
+        {/* Subtitle */}
+        <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto leading-relaxed mb-6">
+          {profile?.short_bio ||
+            'I build practical Machine Learning and AI solutions that fit your business. From seamless integration into existing systems to complete AI-powered applications that cover everything from concept to launch.'}
+        </p>
 
-          <p className="font-body text-base sm:text-lg text-on-surface-variant/80 max-w-2xl mb-10 leading-relaxed">
-            {profile?.short_bio ||
-              'I build intelligent software, data-driven systems, and research-driven AI solutions designed to bridge complex theoretical models with robust, scalable engineering.'}
-          </p>
+        {/* CTA Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+          <Link to="/contact">
+            <button className="bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 font-semibold px-5 py-2.5 rounded-full text-sm transition-colors shadow-md cursor-pointer">
+              Contact Me
+            </button>
+          </Link>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-            <Link to="/projects">
-              <GlassButton variant="primary" size="lg" icon={<ArrowRight className="w-4 h-4" />}>
-                Explore My Work
-              </GlassButton>
-            </Link>
+          <Link to="/work-with-me">
+            <button className="flex items-center gap-2 border border-neutral-200 bg-neutral-100 hover:border-neutral-300 dark:border-neutral-800 dark:bg-neutral-900/60 dark:hover:border-neutral-700 px-5 py-2.5 rounded-full text-sm font-medium transition-colors cursor-pointer">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]" />
+              <span className="text-emerald-600 dark:text-emerald-400 font-medium text-xs sm:text-sm">Available for new projects</span>
+            </button>
+          </Link>
 
-            <a
-              href="/api/cv/download"
-              download="Jeff_G_Wilson_CV.pdf"
-              onClick={(e) => {
-                handleDownloadCV();
-              }}
-              className="inline-flex items-center justify-center font-label-mono font-medium transition-all duration-300 active:scale-95 text-base px-8 py-3.5 rounded-full gap-2.5 glass-panel text-on-surface hover:border-primary/50 hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer"
+          <Link to="/cv">
+            <button
+              className="flex items-center gap-1.5 border border-neutral-300 dark:border-neutral-700 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900/60 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 px-3.5 py-2.5 rounded-full text-xs font-mono transition-colors shadow-sm cursor-pointer"
+              title="View Curriculum Vitae"
             >
-              <Download className={`w-4 h-4 text-primary ${downloadingCV ? 'animate-bounce' : ''}`} />
-              <span>{downloadingCV ? 'Downloading...' : 'Download CV'}</span>
-            </a>
-
-            <Link to="/work-with-me">
-              <GlassButton variant="ghost" size="lg" icon={<Mail className="w-4 h-4" />}>
-                Work With Me
-              </GlassButton>
-            </Link>
-          </div>
+              <Eye className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span>View CV</span>
+            </button>
+          </Link>
         </div>
 
-        {/* Right Column: Hero Profile Visualization */}
-        <div className="flex-1 w-full max-w-[480px] relative z-10 flex justify-center items-center">
-          <div className="relative w-72 h-72 sm:w-96 sm:h-96">
-            {/* Outer Decorative Rings */}
-            <div className="absolute inset-0 rounded-full border border-white/5 animate-[spin_25s_linear_infinite]" />
-            <div className="absolute inset-4 rounded-full border border-primary/20 border-dashed animate-[spin_35s_linear_infinite_reverse]" />
+        {/* Social Links Row */}
+        <div className="flex items-center justify-center gap-6 text-neutral-500 dark:text-neutral-400 mb-12">
+          <a
+            href={profile?.github_url || 'https://github.com'}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="hover:text-neutral-900 dark:hover:text-white transition-colors"
+          >
+            <Github className="w-5 h-5" />
+          </a>
+          <a
+            href={profile?.linkedin_url || 'https://linkedin.com'}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hover:text-neutral-900 dark:hover:text-white transition-colors"
+          >
+            <Linkedin className="w-5 h-5" />
+          </a>
+          <a
+            href={profile?.twitter_url || 'https://x.com'}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+            className="hover:text-neutral-900 dark:hover:text-white transition-colors"
+          >
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+        </div>
+      </section>
 
-            {/* Glass Avatar Container */}
-            <div className="absolute inset-8 rounded-full glass-panel overflow-hidden shadow-[0_0_50px_rgba(77,142,255,0.2)] flex items-center justify-center group border border-white/20">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface/90 z-10 pointer-events-none" />
+      {/* 2. Tech Stack Section matching Reference Image */}
+      <section className="w-full flex flex-col items-center text-center">
+        <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-8 text-center">Tech Stack</h2>
 
-              {profile?.avatar_url ? (
-                <img
-                  src={profile.avatar_url}
-                  alt={profile.name}
-                  className="w-full h-full object-cover relative z-0 transition-transform duration-700 group-hover:scale-105"
-                />
-              ) : (
-                <div className="w-full h-full bg-surface-container-high flex flex-col items-center justify-center p-6 text-center text-on-surface-variant">
-                  <div className="w-20 h-20 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary mb-3">
-                    <Brain className="w-10 h-10" />
-                  </div>
-                  <span className="font-display font-bold text-sm text-on-surface">Jeff G. Wilson</span>
-                  <span className="font-mono text-[11px] text-primary mt-1">Portfolio Avatar</span>
-                </div>
-              )}
-
-              {/* Status Badge */}
-              <div className="absolute bottom-6 left-0 w-full text-center z-20 font-mono text-xs font-semibold text-primary drop-shadow flex items-center justify-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>{profile?.status_text || 'STATUS: ONLINE'}</span>
+        {/* Horizontal centered row of icons and labels */}
+        <div className="flex items-center justify-center gap-8 sm:gap-14 flex-wrap max-w-2xl mx-auto pb-4">
+          {coreTechStack.map((tech) => (
+            <div key={tech.name} className="flex flex-col items-center gap-2.5 shrink-0 group">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
+                {tech.icon}
               </div>
+              <span className="text-xs text-neutral-600 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-white font-medium transition-colors">
+                {tech.name}
+              </span>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* 2. Expertise Pills */}
-      <section className="flex flex-wrap gap-3.5 justify-center pt-8 pb-8 border-y border-white/5">
-        <div className="glass-panel px-5 py-2.5 rounded-full flex items-center gap-2.5 hover:border-primary/50 transition-colors cursor-default">
-          <Brain className="w-4 h-4 text-primary" />
-          <span className="font-mono text-xs text-on-surface-variant">Machine Learning</span>
-        </div>
-        <div className="glass-panel px-5 py-2.5 rounded-full flex items-center gap-2.5 hover:border-secondary/50 transition-colors cursor-default">
-          <Cpu className="w-4 h-4 text-secondary" />
-          <span className="font-mono text-xs text-on-surface-variant">High-Performance Computing</span>
-        </div>
-        <div className="glass-panel px-5 py-2.5 rounded-full flex items-center gap-2.5 hover:border-tertiary/50 transition-colors cursor-default">
-          <Database className="w-4 h-4 text-tertiary" />
-          <span className="font-mono text-xs text-on-surface-variant">Data Engineering</span>
-        </div>
-        <div className="glass-panel px-5 py-2.5 rounded-full flex items-center gap-2.5 hover:border-primary/50 transition-colors cursor-default">
-          <Code2 className="w-4 h-4 text-primary" />
-          <span className="font-mono text-xs text-on-surface-variant">Scalable Web Systems</span>
-        </div>
-        <div className="glass-panel px-5 py-2.5 rounded-full flex items-center gap-2.5 hover:border-secondary/50 transition-colors cursor-default">
-          <Sparkles className="w-4 h-4 text-secondary" />
-          <span className="font-mono text-xs text-on-surface-variant">RAG & Multimodal AI</span>
-        </div>
-      </section>
-
-      {/* 3. Featured Research Paper Spotlight */}
-      {primaryResearch && (
-        <section className="space-y-6">
+      {/* 3. Latest Experience Spotlight */}
+      {primaryExperience && (
+        <section className="space-y-4 pt-4 border-t border-neutral-200 dark:border-white/10">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-xl bg-primary/10 border border-primary/20 text-primary">
-                <Brain className="w-5 h-5" />
-              </div>
-              <h2 className="font-display text-2xl sm:text-3xl font-bold text-on-surface">Featured Research</h2>
+            <div className="flex items-center gap-2">
+              <Briefcase className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <h2 className="text-xl font-bold text-neutral-900 dark:text-white">Experience</h2>
             </div>
             <Link
-              to="/research"
-              className="text-xs font-mono text-primary hover:underline flex items-center gap-1"
+              to="/about#experience"
+              className="text-xs font-mono text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white flex items-center gap-1 transition-colors"
             >
-              <span>View All Papers</span>
+              <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <GlassCard variant="heavy" className="p-8 sm:p-12 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/10 transition-colors" />
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-              <div className="lg:col-span-8 space-y-5">
-                <div className="flex flex-wrap items-center gap-3">
-                  <GlassBadge variant="primary" size="sm">
-                    {primaryResearch.publication_status || 'Under Review'}
-                  </GlassBadge>
-                  <span className="font-mono text-xs text-on-surface-variant">
-                    {primaryResearch.conference_journal} • {primaryResearch.year}
+          <GlassCard className="p-6 sm:p-8 space-y-4 border border-neutral-200/80 bg-neutral-50 shadow-sm dark:border-white/10 dark:bg-[#161616] dark:shadow-none">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-neutral-200/40 dark:border-white/5 pb-3">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
+                    {primaryExperience.start_date} – {primaryExperience.end_date || (primaryExperience.is_current ? 'Present' : '')}
                   </span>
-                </div>
-
-                <h3 className="font-display text-2xl sm:text-3xl font-bold text-on-surface leading-snug">
-                  {primaryResearch.title}
-                </h3>
-
-                <p className="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed">
-                  {primaryResearch.abstract}
-                </p>
-
-                <div className="pt-2 flex flex-wrap gap-4 items-center">
-                  <Link to={`/research/${primaryResearch.slug}`}>
-                    <GlassButton variant="primary" size="md" icon={<BookOpen className="w-4 h-4" />}>
-                      Read Research Summary
-                    </GlassButton>
-                  </Link>
-
-                  {primaryResearch.external_url && (
-                    <a href={primaryResearch.external_url} target="_blank" rel="noopener noreferrer">
-                      <GlassButton variant="secondary" size="md" icon={<ExternalLink className="w-4 h-4" />}>
-                        IEEE / External Link
-                      </GlassButton>
-                    </a>
+                  {primaryExperience.is_current && (
+                    <GlassBadge variant="emerald" size="sm">
+                      Current
+                    </GlassBadge>
                   )}
                 </div>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 dark:text-white">
+                  {primaryExperience.role}
+                </h3>
+                <p className="text-sm sm:text-base font-semibold text-neutral-700 dark:text-neutral-300 mt-0.5">
+                  {primaryExperience.company}
+                </p>
               </div>
 
-              <div className="lg:col-span-4 flex flex-col justify-center items-center lg:border-l border-white/10 lg:pl-8">
-                <div className="w-full aspect-[4/3] rounded-xl glass-panel flex flex-col items-center justify-center p-6 text-center border border-white/10 group-hover:border-primary/30 transition-colors">
-                  <Brain className="w-12 h-12 text-primary/80 mb-3 animate-pulse-slow" />
-                  <span className="font-mono text-xs font-bold text-on-surface">TrustRAG Architecture</span>
-                  <span className="font-mono text-[11px] text-on-surface-variant mt-1">
-                    Multimodal Factuality Grounding
-                  </span>
+              {primaryExperience.location && (
+                <div className="flex items-center gap-1.5 text-xs font-mono text-neutral-500 shrink-0">
+                  <MapPin className="w-3.5 h-3.5" />
+                  <span>{primaryExperience.location}</span>
                 </div>
-              </div>
+              )}
             </div>
+
+            {primaryExperience.description && (
+              <div className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed space-y-1.5">
+                {primaryExperience.description.includes('\n') ? (
+                  <ul className="space-y-1.5">
+                    {primaryExperience.description
+                      .split('\n')
+                      .map((line) => line.replace(/^[\*\-\•]\s*/, '').trim())
+                      .filter(Boolean)
+                      .map((line, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                          <span>{line}</span>
+                        </li>
+                      ))}
+                  </ul>
+                ) : (
+                  <p>{primaryExperience.description}</p>
+                )}
+              </div>
+            )}
+
+            {primaryExperience.technologies && (
+              <div className="flex flex-wrap gap-1.5 pt-2 border-t border-neutral-200/40 dark:border-white/5">
+                {primaryExperience.technologies
+                  .split(',')
+                  .map((t) => t.trim())
+                  .filter(Boolean)
+                  .map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-neutral-200/60 text-neutral-700 dark:bg-white/5 dark:text-neutral-400"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+              </div>
+            )}
           </GlassCard>
         </section>
       )}
 
-      {/* 4. Featured Work Bento Grid */}
-      {featuredProjects && featuredProjects.length > 0 && (
-        <section className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-xl bg-secondary/10 border border-secondary/20 text-secondary">
-                <Code2 className="w-5 h-5" />
-              </div>
-              <h2 className="font-display text-2xl sm:text-3xl font-bold text-on-surface">Featured Projects</h2>
-            </div>
-            <Link
-              to="/projects"
-              className="text-xs font-mono text-primary hover:underline flex items-center gap-1"
+      {/* 4. Research Interests */}
+      <section className="space-y-5 pt-4 border-t border-neutral-200 dark:border-white/10">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <h2 className="text-xl font-bold text-neutral-900 dark:text-white">Research Interests</h2>
+          </div>
+          <Link
+            to="/research"
+            className="text-xs font-mono text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white flex items-center gap-1 transition-colors"
+          >
+            <span>Research Profile</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5">
+          {researchInterests.map((interest, idx) => (
+            <div
+              key={interest}
+              className="p-4 rounded-xl border border-neutral-200/80 bg-neutral-50 hover:border-neutral-300 dark:border-white/10 dark:bg-[#161616] dark:hover:border-emerald-500/40 transition-all flex items-center gap-3.5 group shadow-sm dark:shadow-none"
             >
-              <span>Explore All Projects</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+              <span className="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 shrink-0">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+              <span className="text-sm font-semibold text-neutral-800 dark:text-neutral-200 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+                {interest}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. Technical Skills */}
+      <section className="space-y-5 pt-4 border-t border-neutral-200 dark:border-white/10">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Cpu className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <h2 className="text-xl font-bold text-neutral-900 dark:text-white">Technical Skills</h2>
           </div>
+          <Link
+            to="/about#skills"
+            className="text-xs font-mono text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white flex items-center gap-1 transition-colors"
+          >
+            <span>View All</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-            {featuredProjects.map((project, idx) => {
-              const isSpan8 = idx === 0;
-              const colSpan = isSpan8 ? 'md:col-span-8' : 'md:col-span-4';
-              const techList = project.technologies
-                ? project.technologies.split(',').map((t) => t.trim()).filter(Boolean)
-                : [];
-
-              return (
-                <GlassCard
-                  key={project.id}
-                  hoverEffect
-                  className={`${colSpan} p-8 flex flex-col justify-between group min-h-[320px]`}
-                  onClick={() => navigate(`/projects/${project.slug}`)}
-                >
-                  <div className="space-y-4 relative z-10">
-                    <div className="flex items-center justify-between">
-                      <GlassBadge variant={isSpan8 ? 'primary' : 'secondary'} size="sm">
-                        {project.category}
-                      </GlassBadge>
-                      <ArrowUpRight className="w-5 h-5 text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                    </div>
-
-                    <h3 className="font-display text-2xl font-bold text-on-surface group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-
-                    <p className="font-body text-sm text-on-surface-variant leading-relaxed">
-                      {project.short_description}
-                    </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {technicalSkillGroups.map((group) => (
+            <GlassCard
+              key={group.category}
+              className="p-5 flex flex-col justify-between border border-neutral-200/80 bg-neutral-50 hover:border-neutral-300 dark:border-white/10 dark:bg-[#161616] dark:hover:border-emerald-500/30 transition-all shadow-sm dark:shadow-none"
+            >
+              <div className="space-y-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 shrink-0">
+                    {group.icon}
                   </div>
+                  <h3 className="text-sm font-bold text-neutral-900 dark:text-white tracking-tight">
+                    {group.category}
+                  </h3>
+                </div>
 
-                  <div className="pt-6 relative z-10 mt-auto">
-                    <div className="flex flex-wrap gap-2">
-                      {techList.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-on-surface-variant"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </GlassCard>
-              );
-            })}
-          </div>
-        </section>
-      )}
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {group.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2.5 py-1 rounded-md text-xs font-mono bg-neutral-200/70 text-neutral-800 dark:bg-white/5 dark:text-neutral-300 dark:hover:text-white dark:hover:bg-white/10 border border-transparent dark:border-white/5 transition-colors"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </GlassCard>
+          ))}
+        </div>
+      </section>
 
-      {/* 5. About Snapshot & Education */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <GlassCard className="lg:col-span-7 p-8 sm:p-10 space-y-6">
-          <h2 className="font-display text-2xl font-bold text-on-surface border-b border-white/10 pb-4">
-            About Jeff G. Wilson
-          </h2>
-          <p className="font-body text-base text-on-surface-variant leading-relaxed">
+      {/* 6. Brief Biography & Contact CTA */}
+      <section className="pt-4 border-t border-neutral-200 dark:border-white/10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div className="md:col-span-8 space-y-3">
+          <h2 className="text-xl font-bold text-neutral-900 dark:text-white">About Jeff G. Wilson</h2>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
             {profile?.full_bio ||
-              'I am a Computer Engineering graduate currently pursuing an M.Tech in Data Science at Marwadi University. My passion lies in transforming theoretical computational models into dependable, high-scale software applications and robust AI systems.'}
+              'Computer Engineering graduate currently pursuing an M.Tech in Data Science at Marwadi University. Focused on engineering dependable, high-scale software applications and robust AI systems.'}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-            <div className="p-4 rounded-xl glass-panel flex items-start gap-3">
-              <GraduationCap className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-display font-bold text-sm text-on-surface">M.Tech Data Science</h4>
-                <p className="font-mono text-xs text-on-surface-variant">Marwadi University (Current)</p>
-              </div>
-            </div>
-            <div className="p-4 rounded-xl glass-panel flex items-start gap-3">
-              <Cpu className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-display font-bold text-sm text-on-surface">B.E. Computer Engineering</h4>
-                <p className="font-mono text-xs text-on-surface-variant">Graduated with Distinction</p>
-              </div>
-            </div>
-          </div>
-          <div className="pt-2">
+          <div className="pt-2 flex flex-wrap gap-3">
             <Link to="/about">
-              <GlassButton variant="secondary" size="md" icon={<ArrowRight className="w-4 h-4" />}>
+              <GlassButton variant="secondary" size="sm" icon={<ArrowRight className="w-3.5 h-3.5" />}>
                 Read Full Biography
               </GlassButton>
             </Link>
-          </div>
-        </GlassCard>
 
-        {/* Work With Me Banner */}
-        <GlassCard variant="heavy" className="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/15 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="space-y-4 relative z-10">
-            <span className="font-mono text-xs text-secondary font-bold uppercase tracking-widest">
-              Collaboration & Services
-            </span>
-            <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-on-surface">
-              HAVE AN IDEA?<br />
-              <span className="text-primary">LET'S BUILD IT.</span>
-            </h3>
-            <p className="font-body text-sm text-on-surface-variant leading-relaxed">
-              Available for academic research collaborations, scalable web platforms, and mobile apps.
-            </p>
-          </div>
-
-          <div className="pt-6 relative z-10">
-            <Link to="/work-with-me">
-              <GlassButton variant="primary" size="lg" className="w-full justify-center" icon={<Mail className="w-4 h-4" />}>
-                Start An Inquiry
-              </GlassButton>
+            <Link to="/cv">
+              <button
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-neutral-300 text-neutral-700 hover:text-neutral-900 hover:border-neutral-400 dark:border-neutral-700 text-xs font-mono dark:text-neutral-300 dark:hover:text-white dark:hover:border-neutral-500 transition-colors cursor-pointer"
+              >
+                <Eye className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                <span>View CV</span>
+              </button>
             </Link>
           </div>
-        </GlassCard>
+        </div>
+
+        <div className="md:col-span-4 p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80 dark:bg-[#161616] dark:border-white/10 shadow-sm dark:shadow-none flex flex-col justify-between space-y-4">
+          <div>
+            <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">Available for Work</span>
+            <h3 className="text-lg font-bold text-neutral-900 dark:text-white mt-1">Have a project?</h3>
+            <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">Let's discuss and engineer the right solution.</p>
+          </div>
+          <Link to="/work-with-me">
+            <button className="w-full bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black font-semibold py-2 px-4 rounded-full text-xs dark:hover:bg-neutral-200 transition-colors cursor-pointer shadow-sm">
+              Start An Inquiry
+            </button>
+          </Link>
+        </div>
       </section>
     </div>
   );
 };
+
+export default Home;

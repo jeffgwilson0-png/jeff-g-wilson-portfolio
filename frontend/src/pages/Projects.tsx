@@ -50,14 +50,12 @@ export const Projects: React.FC = () => {
   }
 
   return (
-    <div className="max-w-[1300px] mx-auto px-6 sm:px-8 space-y-12 pb-20">
+    <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 space-y-12 pb-20 pt-4 sm:pt-8">
       {/* Header */}
       <header className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel text-primary font-mono text-xs uppercase tracking-widest">
-          <span>Applied Engineering & Systems</span>
-        </div>
+        <div className="w-8 h-1 bg-emerald-400 rounded-full mx-auto" />
         <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-on-surface">
-          Selected <span className="text-primary">Projects</span>
+          Selected <span className="text-emerald-400">Projects</span>
         </h1>
         <p className="font-body text-base sm:text-lg text-on-surface-variant leading-relaxed">
           A showcase of intelligent software, data architectures, research frameworks, and web platforms built with precision.
@@ -75,7 +73,7 @@ export const Projects: React.FC = () => {
               className={clsx(
                 'px-4 py-2 rounded-xl text-xs font-mono transition-all duration-200',
                 selectedCategory === cat
-                  ? 'bg-primary text-on-primary font-bold shadow-md shadow-primary/20'
+                  ? 'bg-emerald-500 text-white font-bold shadow-md shadow-emerald-500/25'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-white/5'
               )}
             >
@@ -125,14 +123,14 @@ export const Projects: React.FC = () => {
                 <div className="space-y-4">
                   {/* Top Bar */}
                   <div className="flex items-center justify-between">
-                    <GlassBadge variant="primary" size="sm">
+                    <GlassBadge variant="emerald" size="sm">
                       {project.category}
                     </GlassBadge>
-                    <ArrowUpRight className="w-5 h-5 text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                    <ArrowUpRight className="w-5 h-5 text-on-surface-variant group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                   </div>
 
                   {/* Project Title */}
-                  <h3 className="font-display text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-xl font-bold text-on-surface group-hover:text-emerald-400 transition-colors">
                     {project.title}
                   </h3>
 

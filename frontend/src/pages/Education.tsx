@@ -56,10 +56,15 @@ export const Education: React.FC = () => {
                 </div>
 
                 <h3 className="font-display text-2xl font-bold text-on-surface leading-snug">{edu.degree}</h3>
-                <p className="font-body text-base text-secondary font-medium">{edu.field_of_study}</p>
+                {edu.field_of_study && !edu.degree.toLowerCase().includes(edu.field_of_study.toLowerCase()) && (
+                  <p className="font-body text-base text-secondary font-medium">{edu.field_of_study}</p>
+                )}
                 <p className="font-mono text-xs text-on-surface-variant flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5" />
-                  <span>{edu.institution} {edu.location ? `• ${edu.location}` : ''}</span>
+                  <span>
+                    <strong className="font-semibold text-on-surface">{edu.institution}</strong>
+                    {edu.location ? `, ${edu.location}` : ''}
+                  </span>
                 </p>
               </div>
 

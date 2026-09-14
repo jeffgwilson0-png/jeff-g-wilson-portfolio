@@ -19,10 +19,10 @@ export const PublicLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen relative selection:bg-primary/30 selection:text-primary">
+    <div className="flex flex-col min-h-screen bg-background text-on-surface relative transition-colors duration-200">
       <BackgroundGlows />
       <Navbar profile={profile} />
-      <main className="flex-1 z-10 pt-[100px] lg:pt-[130px]">
+      <main className="flex-1 z-10 w-full pt-[76px] sm:pt-[88px] lg:pt-[100px]">
         <Outlet context={{ profile }} />
       </main>
       <Footer profile={profile} />

@@ -177,28 +177,64 @@ def seed():
             print("Seeding experience...")
             experiences_data = [
                 {
-                    "role": "AI/ML Researcher & Graduate Student",
+                    "role": "University Teaching Assistant",
                     "company": "Marwadi University",
-                    "location": "Rajkot, Gujarat, India",
-                    "start_date": "2024",
+                    "location": "Rajkot, India",
+                    "start_date": "April 2026",
                     "end_date": "Present",
                     "is_current": True,
-                    "description": "Conducting advanced research in Retrieval-Augmented Generation (RAG), Natural Language Processing, and scalable machine learning systems. Designing multimodal verification frameworks.",
-                    "technologies": "Python,PyTorch,Transformers,NLP,RAG,Data Science",
+                    "description": "* Assist faculty in laboratory-based instruction and student learning in technical subjects.\n* Explain algorithmic and programming concepts and support students in solving computational problems.\n* Assist students with implementation, debugging, and understanding of programming exercises.\n* Develop technical communication, mentoring, and collaborative problem-solving skills through academic interaction.",
+                    "technologies": "Laboratory Instruction, Algorithms, Problem Solving, Academic Mentoring",
                     "published": True,
                     "order_index": 1
                 },
                 {
-                    "role": "Full-Stack Software Developer & Engineer",
-                    "company": "Independent Engineering & Projects",
-                    "location": "Remote / India",
-                    "start_date": "2022",
-                    "end_date": "Present",
-                    "is_current": True,
-                    "description": "Architecting and implementing modern web applications, distributed APIs, and intelligent data systems including Liberia Opportunities Hub and NGO Connect.",
-                    "technologies": "React,FastAPI,PostgreSQL,TypeScript,Docker,Tailwind CSS",
+                    "role": "Graphic Designer & Media Team Member",
+                    "company": "Christ Fellowship",
+                    "location": "Rajkot, India",
+                    "start_date": "June 2024",
+                    "end_date": "December 2025",
+                    "is_current": False,
+                    "description": "",
+                    "technologies": "Graphic Design, Visual Media, Digital Content",
                     "published": True,
                     "order_index": 2
+                },
+                {
+                    "role": "Graphic Designer",
+                    "company": "Flow Liberia",
+                    "location": "Monrovia, Liberia",
+                    "start_date": "March 2021",
+                    "end_date": "September 2021",
+                    "is_current": False,
+                    "description": "",
+                    "technologies": "Graphic Design, Brand Identity, Visual Assets",
+                    "published": True,
+                    "order_index": 3
+                },
+                {
+                    "role": "Queue Controller",
+                    "company": "National Election Commission",
+                    "location": "Liberia",
+                    "start_date": "April 2021",
+                    "end_date": None,
+                    "is_current": False,
+                    "description": "",
+                    "technologies": "Crowd Management, Operations, Public Service",
+                    "published": True,
+                    "order_index": 4
+                },
+                {
+                    "role": "Data Entry Clerk",
+                    "company": "Comnet IT Solution",
+                    "location": "Monrovia, Liberia",
+                    "start_date": "July 2019",
+                    "end_date": "February 2020",
+                    "is_current": False,
+                    "description": "",
+                    "technologies": "Data Entry, Records Management, Quality Assurance",
+                    "published": True,
+                    "order_index": 5
                 }
             ]
             for exp_data in experiences_data:
@@ -209,30 +245,37 @@ def seed():
             print("Seeding education...")
             educations_data = [
                 {
-                    "degree": "Master of Technology (M.Tech)",
+                    "degree": "M.Tech. in Data Science",
                     "field_of_study": "Data Science",
                     "institution": "Marwadi University",
-                    "location": "Rajkot, Gujarat, India",
-                    "start_date": "2024",
-                    "end_date": "Present",
+                    "location": "Rajkot, India",
+                    "start_date": "July 2025",
+                    "end_date": "Expected February 2027",
                     "is_current": True,
-                    "grade": "Pursuing",
-                    "description": "Specializing in advanced machine learning, deep neural networks, big data architectures, and statistical modeling.",
                     "published": True,
                     "order_index": 1
                 },
                 {
-                    "degree": "Bachelor of Engineering (B.E.)",
+                    "degree": "Bachelor's Degree in Computer Engineering",
                     "field_of_study": "Computer Engineering",
-                    "institution": "Marwadi University / University Faculty of Technology",
-                    "location": "Rajkot, Gujarat, India",
-                    "start_date": "2020",
-                    "end_date": "2024",
+                    "institution": "Marwadi University",
+                    "location": "Rajkot, India",
+                    "start_date": "September 2021",
+                    "end_date": "November 2025",
                     "is_current": False,
-                    "grade": "First Class with Distinction",
-                    "description": "Core foundation in Computer Science, Data Structures & Algorithms, Operating Systems, Database Management Systems, and Software Engineering.",
                     "published": True,
                     "order_index": 2
+                },
+                {
+                    "degree": "Diploma in Electronics",
+                    "field_of_study": "Electronics",
+                    "institution": "Booker Washington Institute",
+                    "location": "Liberia",
+                    "start_date": "July 2016",
+                    "end_date": "September 2020",
+                    "is_current": False,
+                    "published": True,
+                    "order_index": 3
                 }
             ]
             for edu_data in educations_data:
@@ -260,37 +303,36 @@ def seed():
         if db.query(Skill).count() == 0:
             print("Seeding skills...")
             skills_data = [
+                # Machine Learning & AI
+                {"name": "Machine Learning", "category": "Machine Learning & AI", "proficiency": 95, "icon_name": "Brain", "featured": True, "order_index": 1},
+                {"name": "Predictive Modelling", "category": "Machine Learning & AI", "proficiency": 92, "icon_name": "TrendingUp", "featured": True, "order_index": 2},
+                {"name": "Natural Language Processing", "category": "Machine Learning & AI", "proficiency": 90, "icon_name": "FileText", "featured": True, "order_index": 3},
+                {"name": "Multimodal Learning", "category": "Machine Learning & AI", "proficiency": 92, "icon_name": "Layers", "featured": True, "order_index": 4},
+                {"name": "Trustworthy AI", "category": "Machine Learning & AI", "proficiency": 95, "icon_name": "ShieldCheck", "featured": True, "order_index": 5},
+                # Optimization & Computational Methods
+                {"name": "Genetic Algorithms", "category": "Optimization & Computational Methods", "proficiency": 92, "icon_name": "Cpu", "featured": True, "order_index": 6},
+                {"name": "Constraint-Based Optimization", "category": "Optimization & Computational Methods", "proficiency": 90, "icon_name": "Sliders", "featured": True, "order_index": 7},
+                {"name": "Algorithmic Problem Solving", "category": "Optimization & Computational Methods", "proficiency": 94, "icon_name": "Code", "featured": True, "order_index": 8},
+                {"name": "Data Preprocessing", "category": "Optimization & Computational Methods", "proficiency": 92, "icon_name": "Filter", "featured": True, "order_index": 9},
                 # Programming
-                {"name": "Python", "category": "Programming", "proficiency": 95, "icon_name": "Terminal", "featured": True, "order_index": 1},
-                {"name": "TypeScript", "category": "Programming", "proficiency": 90, "icon_name": "Code2", "featured": True, "order_index": 2},
-                {"name": "C++", "category": "Programming", "proficiency": 85, "icon_name": "Cpu", "featured": True, "order_index": 3},
-                {"name": "JavaScript", "category": "Programming", "proficiency": 92, "icon_name": "FileCode", "featured": True, "order_index": 4},
-                {"name": "SQL", "category": "Programming", "proficiency": 90, "icon_name": "Database", "featured": True, "order_index": 5},
-                # AI / Machine Learning
-                {"name": "PyTorch", "category": "AI / Machine Learning", "proficiency": 92, "icon_name": "Flame", "featured": True, "order_index": 6},
-                {"name": "Large Language Models (LLMs)", "category": "AI / Machine Learning", "proficiency": 90, "icon_name": "Brain", "featured": True, "order_index": 7},
-                {"name": "RAG Architectures", "category": "AI / Machine Learning", "proficiency": 95, "icon_name": "Network", "featured": True, "order_index": 8},
-                {"name": "Scikit-Learn", "category": "AI / Machine Learning", "proficiency": 90, "icon_name": "Binary", "featured": True, "order_index": 9},
-                {"name": "Transformers & HuggingFace", "category": "AI / Machine Learning", "proficiency": 88, "icon_name": "Sparkles", "featured": True, "order_index": 10},
+                {"name": "Python", "category": "Programming", "proficiency": 98, "icon_name": "Terminal", "featured": True, "order_index": 10},
+                {"name": "Java", "category": "Programming", "proficiency": 88, "icon_name": "Code2", "featured": True, "order_index": 11},
+                {"name": "JavaScript", "category": "Programming", "proficiency": 90, "icon_name": "FileCode", "featured": True, "order_index": 12},
                 # Data Science
-                {"name": "Pandas & NumPy", "category": "Data Science", "proficiency": 95, "icon_name": "Table", "featured": True, "order_index": 11},
-                {"name": "Data Architecture", "category": "Data Science", "proficiency": 88, "icon_name": "Boxes", "featured": True, "order_index": 12},
-                {"name": "Statistical Modeling", "category": "Data Science", "proficiency": 86, "icon_name": "BarChart3", "featured": True, "order_index": 13},
-                {"name": "XGBoost & LightGBM", "category": "Data Science", "proficiency": 88, "icon_name": "TrendingUp", "featured": True, "order_index": 14},
-                # Cloud & DevOps
-                {"name": "Docker", "category": "Cloud", "proficiency": 85, "icon_name": "Container", "featured": True, "order_index": 15},
-                {"name": "PostgreSQL", "category": "Cloud", "proficiency": 90, "icon_name": "Database", "featured": True, "order_index": 16},
-                {"name": "AWS (EC2, S3)", "category": "Cloud", "proficiency": 80, "icon_name": "Cloud", "featured": True, "order_index": 17},
-                {"name": "Redis", "category": "Cloud", "proficiency": 82, "icon_name": "Zap", "featured": True, "order_index": 18},
-                # Development
-                {"name": "FastAPI", "category": "Development", "proficiency": 95, "icon_name": "Server", "featured": True, "order_index": 19},
-                {"name": "React & React Router", "category": "Development", "proficiency": 92, "icon_name": "Layout", "featured": True, "order_index": 20},
-                {"name": "Node.js", "category": "Development", "proficiency": 85, "icon_name": "Layers", "featured": True, "order_index": 21},
-                {"name": "Tailwind CSS", "category": "Development", "proficiency": 95, "icon_name": "Palette", "featured": True, "order_index": 22},
-                {"name": "RESTful API Design", "category": "Development", "proficiency": 95, "icon_name": "Globe", "featured": True, "order_index": 23},
-                # Design
-                {"name": "Liquid Glass UI / UX", "category": "Design", "proficiency": 95, "icon_name": "GlassWater", "featured": True, "order_index": 24},
-                {"name": "Figma & Wireframing", "category": "Design", "proficiency": 85, "icon_name": "Figma", "featured": True, "order_index": 25},
+                {"name": "Data Analytics", "category": "Data Science", "proficiency": 92, "icon_name": "BarChart3", "featured": True, "order_index": 13},
+                {"name": "Statistical Evaluation", "category": "Data Science", "proficiency": 90, "icon_name": "Binary", "featured": True, "order_index": 14},
+                {"name": "Machine Learning with Python", "category": "Data Science", "proficiency": 96, "icon_name": "Terminal", "featured": True, "order_index": 15},
+                # Frameworks & Tools
+                {"name": "NLTK", "category": "Frameworks & Tools", "proficiency": 90, "icon_name": "BookOpen", "featured": True, "order_index": 16},
+                {"name": "Django", "category": "Frameworks & Tools", "proficiency": 88, "icon_name": "Server", "featured": True, "order_index": 17},
+                {"name": "OpenCV", "category": "Frameworks & Tools", "proficiency": 86, "icon_name": "Eye", "featured": True, "order_index": 18},
+                {"name": "ChromaDB", "category": "Frameworks & Tools", "proficiency": 92, "icon_name": "Database", "featured": True, "order_index": 19},
+                # Cloud & Systems
+                {"name": "AWS", "category": "Cloud & Systems", "proficiency": 86, "icon_name": "Cloud", "featured": True, "order_index": 20},
+                {"name": "Microsoft Azure", "category": "Cloud & Systems", "proficiency": 84, "icon_name": "CloudRain", "featured": True, "order_index": 21},
+                {"name": "Google Cloud Platform", "category": "Cloud & Systems", "proficiency": 85, "icon_name": "CloudLightning", "featured": True, "order_index": 22},
+                {"name": "Linux", "category": "Cloud & Systems", "proficiency": 90, "icon_name": "TerminalSquare", "featured": True, "order_index": 23},
+                {"name": "Windows", "category": "Cloud & Systems", "proficiency": 92, "icon_name": "Monitor", "featured": True, "order_index": 24},
             ]
             for s_data in skills_data:
                 db.add(Skill(**s_data))

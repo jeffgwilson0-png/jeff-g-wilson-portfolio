@@ -40,6 +40,9 @@ export default {
         "on-error": "var(--color-on-error)",
         "error-container": "var(--color-error-container)",
         "on-error-container": "var(--color-on-error-container)",
+        "accent-emerald": "#10b981",
+        "accent-teal": "#14b8a6",
+        "accent-cyan": "#06b6d4",
       },
       borderRadius: {
         DEFAULT: "0.5rem",
@@ -83,6 +86,9 @@ export default {
         "glass-highlight": "inset 0 1px 0 0 rgba(255, 255, 255, 0.15)",
         "glow-primary": "0 0 25px rgba(173, 198, 255, 0.25)",
         "glow-secondary": "0 0 25px rgba(208, 188, 255, 0.25)",
+        "glow-emerald": "0 0 25px rgba(16, 185, 129, 0.35)",
+        "glow-avatar": "0 0 35px rgba(16, 185, 129, 0.45)",
+        "ring-emerald": "0 0 0 2px #10b981, 0 0 25px rgba(16, 185, 129, 0.4)",
       },
       animation: {
         float: "float 18s ease-in-out infinite alternate",

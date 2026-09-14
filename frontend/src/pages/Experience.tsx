@@ -58,7 +58,9 @@ export const Experience: React.FC = () => {
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-4">
                     <div>
                       <span className="font-mono text-xs text-primary font-bold">
-                        {exp.start_date} – {exp.end_date || (exp.is_current ? 'Present' : '')}
+                        {exp.end_date || exp.is_current
+                          ? `${exp.start_date} – ${exp.end_date || 'Present'}`
+                          : exp.start_date}
                       </span>
                       <h3 className="font-display text-2xl font-bold text-on-surface mt-1">{exp.role}</h3>
                       <p className="font-body text-base text-secondary font-semibold">{exp.company}</p>
@@ -73,9 +75,24 @@ export const Experience: React.FC = () => {
                   </div>
 
                   {exp.description && (
-                    <p className="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed">
-                      {exp.description}
-                    </p>
+                    <div className="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed space-y-1.5 pt-1">
+                      {exp.description.includes('\n') ? (
+                        <ul className="space-y-2">
+                          {exp.description
+                            .split('\n')
+                            .map((line) => line.replace(/^[\*\-\•]\s*/, '').trim())
+                            .filter(Boolean)
+                            .map((line, idx) => (
+                              <li key={idx} className="flex items-start gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                                <span>{line}</span>
+                              </li>
+                            ))}
+                        </ul>
+                      ) : (
+                        <p>{exp.description}</p>
+                      )}
+                    </div>
                   )}
 
                   {techList.length > 0 && (

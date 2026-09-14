@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Plus, Edit2, Trash2, Sparkles, Star, Save } from 'lucide-react';
+import { Plus, Edit2, Trash2, Star, Save } from 'lucide-react';
 import { GlassCard } from '../components/common/GlassCard';
 import { GlassButton } from '../components/common/GlassButton';
 import { GlassBadge } from '../components/common/GlassBadge';

@@ -26,6 +26,7 @@ export const GlassBadge: React.FC<GlassBadgeProps> = ({
     tertiary: 'bg-tertiary/10 text-tertiary border border-tertiary/30',
     outline: 'border border-white/15 text-on-surface-variant bg-white/5',
     success: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30',
+    emerald: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-[0_0_10px_rgba(16,185,129,0.15)]',
     warning: 'bg-amber-500/10 text-amber-400 border border-amber-500/30',
     error: 'bg-error/10 text-error border border-error/30',
   };

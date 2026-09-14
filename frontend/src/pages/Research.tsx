@@ -1,204 +1,178 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
-  Brain,
-  FileText,
-  Bookmark,
-  Share2,
-  ExternalLink,
-  Copy,
-  Check,
-  Download,
-  Users,
-  Building,
-  Calendar,
-  Network
+  BookOpen,
+  Mail,
+  Eye,
+  FlaskConical,
+  CheckCircle2
 } from 'lucide-react';
 import { GlassCard } from '../components/common/GlassCard';
-import { GlassButton } from '../components/common/GlassButton';
 import { GlassBadge } from '../components/common/GlassBadge';
-import { LoadingSpinner } from '../components/common/LoadingSpinner';
-import { Research as ResearchType } from '../types';
-import { api } from '../api/client';
-import { useToast } from '../contexts/ToastContext';
 
 export const Research: React.FC = () => {
-  const [researchList, setResearchList] = useState<ResearchType[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [copiedId, setCopiedId] = useState<number | null>(null);
-  const { success, info } = useToast();
-
-  useEffect(() => {
-    api.getResearch({ published_only: true })
-      .then(setResearchList)
-      .catch((err) => console.error('Error fetching research:', err))
-      .finally(() => setLoading(false));
-  }, []);
-
-  const handleCopyCitation = (item: ResearchType) => {
-    const citation = `${item.authors} (${item.year || '2024'}). "${item.title}". ${item.conference_journal || 'Under Review'}.`;
-    navigator.clipboard.writeText(citation);
-    setCopiedId(item.id);
-    success('Citation copied to clipboard');
-    setTimeout(() => setCopiedId(null), 3000);
-  };
-
-  if (loading) {
-    return <LoadingSpinner text="Loading AI research publications..." className="min-h-[60vh]" />;
-  }
+  const researchInterests = [
+    'Scientific Machine Learning',
+    'Scientific Foundation Models',
+    'Deep Learning',
+    'Trustworthy and Uncertainty-Aware AI',
+    'Multimodal Learning',
+    'Inverse Problems',
+    'Machine Learning for Complex Systems',
+    'Representation Learning',
+    'Constraint-Aware Machine Learning',
+    'Generalization and Transfer Learning',
+  ];
 
   return (
-    <div className="max-w-[1300px] mx-auto px-6 sm:px-8 space-y-16 pb-20">
+    <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 space-y-12 pb-20 pt-4 sm:pt-8">
       {/* Header */}
-      <header className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel text-primary font-mono text-xs uppercase tracking-widest">
-          <Brain className="w-4 h-4" />
-          <span>Research & Innovation</span>
-        </div>
-        <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-on-surface">
-          Exploration & <span className="text-primary">Synthesis</span>
+      <header className="text-center max-w-2xl mx-auto space-y-3">
+        <div className="w-8 h-1 bg-emerald-400 rounded-full mx-auto" />
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-neutral-900 dark:text-white tracking-tight">
+          Research Profile
         </h1>
-        <p className="font-body text-base sm:text-lg text-on-surface-variant leading-relaxed">
-          An index of academic research, focusing on trustworthy machine learning, multimodal Retrieval-Augmented Generation, and factuality grounding.
+        <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 font-medium">
+          Scientific Machine Learning • Trustworthy AI • Computational Modelling
         </p>
       </header>
 
-      {/* Research Papers List */}
-      <div className="space-y-12">
-        {researchList.map((paper) => {
-          const techList = paper.technologies
-            ? paper.technologies.split(',').map((t) => t.trim()).filter(Boolean)
-            : [];
+      {/* 1. Main Research Profile Statement Card */}
+      <GlassCard className="p-6 sm:p-10 space-y-6 border border-neutral-200/80 bg-neutral-50 shadow-sm dark:border-white/10 dark:bg-[#161616] dark:shadow-none">
+        <div className="flex items-center gap-2.5 border-b border-neutral-200/60 dark:border-white/10 pb-4">
+          <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+            <FlaskConical className="w-5 h-5" />
+          </div>
+          <div>
+            <h2 className="text-lg font-bold text-neutral-900 dark:text-white">
+              Overview &amp; Research Agenda
+            </h2>
+            <p className="text-xs font-mono text-neutral-500">
+              Jeff G. Wilson • Research Assistant
+            </p>
+          </div>
+        </div>
 
-          return (
-            <GlassCard
-              key={paper.id}
-              variant="heavy"
-              className="p-8 sm:p-12 relative overflow-hidden group"
+        {/* The Exact User-Provided Research Profile Text */}
+        <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed sm:leading-loose">
+          Computer Engineering graduate and current M.Tech. Data Science student with a growing research focus on machine learning, deep learning, trustworthy AI, and computational modelling. Experienced in Python-based machine learning, predictive modelling, natural language processing, multimodal AI, genetic algorithms, and constraint-based optimization. Research experience includes a submitted IEEE conference paper on a trustworthy retrieval-augmented multimodal framework for AI-generated misinformation detection. Currently working as a University Teaching Assistant while developing research and technical communication skills. Interested in developing reliable and generalizable machine-learning methods for complex scientific problems, particularly learning from incomplete, heterogeneous, or indirect observations.
+        </p>
+
+        <div className="pt-2 flex flex-wrap gap-3 border-t border-neutral-200/40 dark:border-white/5 items-center">
+          <Link to="/contact">
+            <button className="bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 font-semibold px-5 py-2.5 rounded-full text-xs transition-colors shadow-sm cursor-pointer inline-flex items-center gap-2">
+              <Mail className="w-3.5 h-3.5" />
+              <span>Contact for Collaboration</span>
+            </button>
+          </Link>
+
+          <Link to="/cv">
+            <button className="flex items-center gap-2 border border-neutral-300 dark:border-neutral-700 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900/60 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 px-4 py-2.5 rounded-full text-xs font-mono transition-colors cursor-pointer">
+              <Eye className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span>View CV</span>
+            </button>
+          </Link>
+        </div>
+      </GlassCard>
+
+      {/* 2. Research Experience */}
+      <section className="space-y-4 pt-4 border-t border-neutral-200 dark:border-white/10">
+        <div className="flex items-center gap-2">
+          <FlaskConical className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          <h2 className="text-xl font-bold text-neutral-900 dark:text-white">Research Experience</h2>
+        </div>
+
+        <GlassCard className="p-6 sm:p-8 space-y-5 border border-neutral-200/80 bg-neutral-50 shadow-sm dark:border-white/10 dark:bg-[#161616] dark:shadow-none">
+          <div className="space-y-2 border-b border-neutral-200/40 dark:border-white/5 pb-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <GlassBadge variant="emerald" size="sm">
+                Submitted / Under Review
+              </GlassBadge>
+              <span className="font-mono text-xs text-neutral-500">
+                IEEE Conference
+              </span>
+            </div>
+
+            <h3 className="font-display text-lg sm:text-xl font-bold text-neutral-900 dark:text-white leading-snug">
+              TrustRAG: A Trustworthy Retrieval-Augmented Multimodal Framework for Real-Time AI-Generated Misinformation Detection
+            </h3>
+
+            <p className="text-xs sm:text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+              Research Project / IEEE Conference Submitted — Marwadi University
+            </p>
+          </div>
+
+          {/* Bullet Points */}
+          <ul className="space-y-2.5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
+            <li className="flex items-start gap-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0" />
+              <span>Designed a multimodal machine-learning framework combining text and visual information for AI-generated misinformation detection.</span>
+            </li>
+            <li className="flex items-start gap-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0" />
+              <span>Integrated text representations, image-derived features, retrieval-based evidence, and model reasoning into a unified pipeline.</span>
+            </li>
+            <li className="flex items-start gap-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0" />
+              <span>Developed a trustworthiness layer combining model confidence and evidence agreement to assess prediction reliability.</span>
+            </li>
+            <li className="flex items-start gap-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0" />
+              <span>Evaluated the proposed framework using benchmark datasets and multiple performance metrics.</span>
+            </li>
+            <li className="flex items-start gap-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0" />
+              <span>Applied statistical significance testing across multiple random seeds to assess the robustness of experimental results.</span>
+            </li>
+            <li className="flex items-start gap-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0" />
+              <span>Investigated approaches for improving the reliability, interpretability, and evidence support of machine-learning predictions.</span>
+            </li>
+          </ul>
+
+          <div className="flex flex-wrap gap-1.5 pt-3 border-t border-neutral-200/40 dark:border-white/5">
+            {[
+              'Multimodal AI',
+              'Retrieval-Augmented Generation (RAG)',
+              'Misinformation Detection',
+              'Trustworthy ML',
+              'Statistical Testing',
+              'Model Calibration'
+            ].map((tag) => (
+              <span
+                key={tag}
+                className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-neutral-200/60 text-neutral-700 dark:bg-white/5 dark:text-neutral-400"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </GlassCard>
+      </section>
+
+      {/* 3. Research Interests Focus Area Tags */}
+      <section className="space-y-4 pt-4 border-t border-neutral-200 dark:border-white/10">
+        <div className="flex items-center gap-2">
+          <BookOpen className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          <h2 className="text-xl font-bold text-neutral-900 dark:text-white">Core Research Interests</h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5">
+          {researchInterests.map((interest, idx) => (
+            <div
+              key={interest}
+              className="p-3.5 rounded-xl border border-neutral-200/80 bg-neutral-50 hover:border-neutral-300 dark:border-white/10 dark:bg-[#161616] dark:hover:border-emerald-500/40 transition-all flex items-center gap-3 group shadow-sm dark:shadow-none"
             >
-              {/* Background Ambient Glow */}
-              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/10 transition-colors" />
-
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-                {/* Main Content Area */}
-                <div className="lg:col-span-8 space-y-6">
-                  {/* Status & Venue */}
-                  <div className="flex flex-wrap items-center gap-3">
-                    <GlassBadge variant="primary" size="sm">
-                      <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                      <span>{paper.publication_status || 'Under Review'}</span>
-                    </GlassBadge>
-                    <span className="font-mono text-xs text-on-surface-variant">
-                      {paper.conference_journal} • {paper.year}
-                    </span>
-                    {paper.research_area && (
-                      <GlassBadge variant="secondary" size="sm">
-                        {paper.research_area}
-                      </GlassBadge>
-                    )}
-                  </div>
-
-                  {/* Paper Title */}
-                  <h2 className="font-display text-2xl sm:text-3xl font-bold text-on-surface leading-snug">
-                    {paper.title}
-                  </h2>
-
-                  {/* Authors & Venue */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-3 border-y border-white/10 text-xs font-mono">
-                    <div className="flex items-center gap-2 text-on-surface">
-                      <Users className="w-4 h-4 text-primary shrink-0" />
-                      <span>{paper.authors}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-on-surface">
-                      <Building className="w-4 h-4 text-secondary shrink-0" />
-                      <span>{paper.conference_journal}</span>
-                    </div>
-                  </div>
-
-                  {/* Abstract */}
-                  <div className="space-y-2">
-                    <h4 className="font-mono text-xs font-bold text-primary uppercase tracking-wider">
-                      Abstract
-                    </h4>
-                    <p className="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed">
-                      {paper.abstract}
-                    </p>
-                  </div>
-
-                  {/* Methodology if available */}
-                  {paper.methodology && (
-                    <div className="space-y-2 pt-2">
-                      <h4 className="font-mono text-xs font-bold text-secondary uppercase tracking-wider">
-                        Methodology & Approach
-                      </h4>
-                      <p className="font-body text-sm text-on-surface-variant leading-relaxed">
-                        {paper.methodology}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Tech stack */}
-                  {techList.length > 0 && (
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {techList.map((t) => (
-                        <span
-                          key={t}
-                          className="px-3 py-1 rounded-lg text-xs font-mono bg-white/5 border border-white/10 text-on-surface"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Actions */}
-                  <div className="pt-4 flex flex-wrap gap-4 items-center">
-                    {paper.pdf_url && (
-                      <a href={paper.pdf_url} target="_blank" rel="noopener noreferrer">
-                        <GlassButton variant="primary" size="md" icon={<Download className="w-4 h-4" />}>
-                          Download Paper (PDF)
-                        </GlassButton>
-                      </a>
-                    )}
-
-                    <GlassButton
-                      variant="secondary"
-                      size="md"
-                      onClick={() => handleCopyCitation(paper)}
-                      icon={copiedId === paper.id ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                    >
-                      {copiedId === paper.id ? 'Citation Copied' : 'Copy Citation'}
-                    </GlassButton>
-
-                    {paper.external_url && (
-                      <a href={paper.external_url} target="_blank" rel="noopener noreferrer">
-                        <GlassButton variant="ghost" size="md" icon={<ExternalLink className="w-4 h-4" />}>
-                          External Link
-                        </GlassButton>
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                {/* Right Visual Representation Card */}
-                <div className="lg:col-span-4 flex flex-col justify-center items-center lg:border-l border-white/10 lg:pl-8 space-y-4">
-                  <div className="w-full aspect-[4/3] rounded-2xl glass-panel flex flex-col items-center justify-center p-6 text-center border border-white/10 group-hover:border-primary/40 transition-colors relative overflow-hidden">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4 shadow-lg shadow-primary/10">
-                      <Network className="w-8 h-8 animate-pulse-slow" />
-                    </div>
-                    <span className="font-mono text-sm font-bold text-on-surface">TrustRAG Model</span>
-                    <span className="font-mono text-xs text-on-surface-variant mt-1">
-                      Graph-Augmented Multimodal Retrieval
-                    </span>
-                    <div className="mt-4 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-primary">
-                      Architecture Blueprint
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </GlassCard>
-          );
-        })}
-      </div>
+              <span className="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 shrink-0">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+              <span className="text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+                {interest}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

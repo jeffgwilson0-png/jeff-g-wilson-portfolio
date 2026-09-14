@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   FolderGit2,
   BookOpen,
-  Sparkles,
+  Cpu,
   Briefcase,
   Mail,
   ArrowRight,
@@ -135,7 +135,7 @@ export const AdminDashboard: React.FC = () => {
           onClick={() => navigate('/admin/skills')}
         >
           <div className="flex items-center justify-between text-tertiary mb-3">
-            <Sparkles className="w-6 h-6" />
+            <Cpu className="w-6 h-6" />
             <span className="font-mono text-[11px] text-tertiary/80">Tracked</span>
           </div>
           <div>

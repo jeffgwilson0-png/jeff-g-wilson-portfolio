@@ -6,7 +6,6 @@ import {
   MessageSquare,
   Send,
   CheckCircle2,
-  Sparkles,
   Layers,
   Clock,
   DollarSign,
@@ -106,13 +105,10 @@ export const WorkWithMe: React.FC = () => {
     <div className="max-w-[1000px] mx-auto px-6 sm:px-8 space-y-12 pb-20">
       {/* Hero Header */}
       <header className="text-center max-w-2xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel text-primary font-mono text-xs uppercase tracking-widest">
-          <Sparkles className="w-4 h-4" />
-          <span>Let's Connect & Collaborate</span>
-        </div>
+        <div className="w-8 h-1 bg-emerald-400 rounded-full mx-auto" />
         <h1 className="font-display text-4xl sm:text-6xl font-extrabold text-on-surface leading-tight">
           HAVE AN IDEA?<br />
-          <span className="text-primary">LET'S BUILD IT.</span>
+          <span className="text-emerald-400">LET'S BUILD IT.</span>
         </h1>
         <p className="font-body text-base sm:text-lg text-on-surface-variant leading-relaxed">
           Whether you are looking to collaborate on academic research, engineer a scalable web system, or develop a mobile app, let's connect.
@@ -132,13 +128,13 @@ export const WorkWithMe: React.FC = () => {
                 setSubmittedSuccess(false);
               }}
               className={clsx(
-                'px-5 py-3 rounded-xl font-mono text-xs sm:text-sm font-medium flex items-center gap-2.5 transition-all duration-200',
+                'px-5 py-3 rounded-xl font-mono text-xs sm:text-sm font-medium flex items-center gap-2.5 transition-all duration-200 cursor-pointer',
                 isActive
-                  ? 'bg-primary/20 text-primary border border-primary/40 shadow-[0_0_20px_rgba(173,198,255,0.2)] font-bold'
+                  ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/35 shadow-[0_0_20px_rgba(16,185,129,0.2)] font-bold'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-white/5'
               )}
             >
-              <Icon className={clsx('w-4 h-4', isActive ? 'text-primary' : tab.color)} />
+              <Icon className={clsx('w-4 h-4', isActive ? 'text-emerald-400' : tab.color)} />
               <span>{tab.label}</span>
             </button>
           );

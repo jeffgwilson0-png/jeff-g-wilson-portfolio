@@ -31,8 +31,8 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <div style={{
           minHeight: '100vh',
-          backgroundColor: '#051424',
-          color: '#d4e4fa',
+          backgroundColor: '#121212',
+          color: '#ffffff',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',

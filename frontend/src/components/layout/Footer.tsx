@@ -9,15 +9,15 @@ export const Footer: React.FC<{ profile?: Profile | null }> = ({ profile }) => {
   };
 
   return (
-    <footer className="w-full border-t border-white/5 bg-surface-container-lowest py-12 mt-20 relative z-10">
-      <div className="max-w-[1300px] mx-auto px-6 sm:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+    <footer className="w-full border-t border-neutral-200 dark:border-white/5 bg-background py-12 mt-20 relative z-10 transition-colors duration-200">
+      <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 flex flex-col md:flex-row justify-between items-center gap-8">
         {/* Brand & Identity */}
-        <div className="flex flex-col items-center md:items-start gap-2">
-          <Link to="/" className="font-display text-lg font-bold text-primary tracking-tight">
+        <div className="flex flex-col items-center md:items-start gap-1.5">
+          <Link to="/" className="font-display text-base font-bold text-on-surface hover:text-emerald-400 tracking-wider">
             {profile?.name ? profile.name.toUpperCase() : 'JEFF G. WILSON'}
           </Link>
           <p className="font-body text-xs text-on-surface-variant max-w-sm text-center md:text-left">
-            Built with Liquid Glass & Obsidian Refraction design systems. Connected with FastAPI & PostgreSQL.
+            Computer Engineer, Data Scientist &amp; AI Researcher. Built with Liquid Glass.
           </p>
         </div>
 
